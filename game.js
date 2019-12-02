@@ -80,8 +80,11 @@ var npc4123_dialogue = [];
 var npc40121_dialogue = [];
 var npc40121X_dialogue = [];
 var npc12112X_dialogue = [];
+var npc174_dialogue = [];
+var npc174X_dialogue = [];
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
+var npc174_talked_to = false;
 var currentDialogue = 0;
 var currentLine;
 var currentNPC = 0;
@@ -982,7 +985,8 @@ function checkNPCInteraction()
           checkValidInteraction( 34, 107 ) ||
           checkValidInteraction( 43, 107 ) ||
           checkValidInteraction( 4, 123 ) ||
-          checkValidInteraction( 40, 121 );
+          checkValidInteraction( 40, 121 ) ||
+          checkValidInteraction( 17, 4 );
 }
 
 
@@ -1074,7 +1078,25 @@ function getCurrentLine()
             currentArray = npc40121X_dialogue;
          }
          
-         break;  
+         break;
+         
+      case 174:
+         if( !npc174_talked_to )
+         {
+            currentArray = npc174_dialogue;
+            player.armor++;
+            player.max_armor++;
+           // player_armor++;
+           // player_max_armor++;
+            npc174_talked_to = true;
+         }
+         
+         else
+         {
+            currentArray = npc174X_dialogue;
+         }
+         
+         break; 
    }
 }
 
@@ -1129,7 +1151,7 @@ function initialize_npc_dialogue()
                            "world!" );
    npc17113_dialogue.push( "He is only known as the Shadow King,\n"+
                            "and he is going to suck the life from\n" + 
-						   "this world! Please help us!" );
+                           "this world! Please help us!" );
    npc17113_dialogue.push( "You would be hailed a hero if he were\n"+
                            "slain by your hand!" );
    
@@ -1208,6 +1230,13 @@ function initialize_npc_dialogue()
    // Needs enter when longer than --------------------------------
    npc40121X_dialogue.push( "You've already taken my knowledge...\n" + 
                             "What more do you want of me!?" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc174_dialogue.push( "You saved me, thank you! Here..."); 
+   npc174_dialogue.push( "Your armor has increased!" );
+   
+   // Needs enter when longer than --------------------------------
+   npc174X_dialogue.push( "You saved me, thank you!" ); 
    
 }
 
