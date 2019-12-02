@@ -246,13 +246,13 @@ function generateLevel()
 						attack: 4, 
 						speed: 8});
                   
-  /** enemy3 = new Enemy({id: GOBLIN,
-						num_charges: 1,
+   enemy3 = new Enemy({id: OGRE,
+						num_charges: 3,
 						x: PLAYERMOVEAMOUNT * 18, 
 						y: PLAYERMOVEAMOUNT * 4,
 						state: createMovieClip( PLAYERMOVEAMOUNT * 18, PLAYERMOVEAMOUNT * 4,
-                                          1, 1, "Goblin", 1, 2 ), 
-						name: "Goblin", 
+                                          1, 1, "Overworld_Ogre", 1, 2 ), 
+						name: "Ogre", 
 						attack: 1, 
 						speed: 6}); //changed for testing purposes
 						
@@ -274,9 +274,9 @@ function generateLevel()
 						state: createMovieClip( PLAYERMOVEAMOUNT * 8, PLAYERMOVEAMOUNT * 27,
                                           1, 1, "Goblin", 1, 2 ),  
 						name: "Goblin", 
-						attack: 1, 
-						speed: 6}); //changed for testing purposes */
-						
+						attack: 3, 
+						speed: 2}); //changed for testing purposes 
+	   /** Snow enemies     					
 	enemy3 = new Enemy({id: EVIL_SNOWMAN,
 						num_charges: 7,
 						x: PLAYERMOVEAMOUNT * 18, 
@@ -287,7 +287,7 @@ function generateLevel()
 						attack: 4, 
 						speed: 3}); //changed for testing purposes
 						
-                  
+          
    enemy4 = new Enemy({id: ICE_WRAITH,
 						num_charges: 5,
 						x: PLAYERMOVEAMOUNT * 16, 
@@ -306,7 +306,7 @@ function generateLevel()
                                           1, 1, "Overworld_Snow_Devil", 1, 3 ),  
 						name: "Snow Devil", 
 						attack: 3, 
-						speed: 6}); //changed for testing purposes
+						speed: 6}); //changed for testing purposes */
    
    enemy6 = new Enemy({id: SHADOW_KING,
 						num_charges: 8,
