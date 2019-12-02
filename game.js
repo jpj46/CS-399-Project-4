@@ -84,7 +84,6 @@ var npc174_dialogue = [];
 var npc174X_dialogue = [];
 var npc654_dialogue = [];
 var npc654X_dialogue = [];
-
 var npc57108_dialogue = [];
 var npc65111_dialogue = [];
 var npc67114_dialogue = [];
@@ -95,7 +94,7 @@ var npc95108_dialogue = [];
 var npc94122_dialogue = [];
 var npc94122X_dialogue = [];
 var npc87118_dialogue = [];
-
+var hard_enemy_dialogue = [];
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
 var npc174_talked_to = false;
@@ -114,6 +113,11 @@ var playerArmorArray = [];
 var currentHealthSprite;
 var currentArmorSprite;
 var battleBackground;
+
+var dialogueText = new PIXI.Text('', 
+                  {fontFamily : 'Calibri', fontSize: 25, fill : 0xFFFFFF, align : 'left'});
+dialogueText.x = 5;
+dialogueText.y = 405;
 
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
@@ -664,7 +668,7 @@ function generateBattleMenu()
    if ( player.is_alive ) 
    {
       battle_stage = new PIXI.Container();
-	  battle_text_stage = new PIXI.Container();
+	   battle_text_stage = new PIXI.Container();
       battle_active = true;
       battle_text_stage.scale.x = 1.5;
       battle_text_stage.scale.y = 1.5;
@@ -771,7 +775,7 @@ function generateBattleMenu()
 
 	  
       battle_text_stage.addChild( hand );
-	  battle_stage.addChild( battle_text_stage );
+	   battle_stage.addChild( battle_text_stage );
       master_stage.addChild( battle_stage );
    }
 }
@@ -1048,10 +1052,7 @@ function keydownEventHandler(event) {
             if( checkNPCInteraction() )
             {
                dialogueBox = createRoundedRect( 0, 400, 500, 100, 10, "white" );
-               dialogueText = new PIXI.Text(currentArray[currentDialogue], 
-                  {fontFamily : 'Calibri', fontSize: 25, fill : 0xFFFFFF, align : 'left'});
-               dialogueText.x = 5;
-               dialogueText.y = 405;
+               dialogueText.setText(currentArray[currentDialogue]);
                currentDialogue++;
    
                master_stage.addChild( dialogueBox );
@@ -1087,7 +1088,7 @@ function keydownEventHandler(event) {
          }
       }
       
-      else if ( dialogue_active )
+      else if ( dialogue_active || currentNPC == 999999 )
       {
          if ( event.keyCode == ENTER )
          {
@@ -1156,6 +1157,10 @@ function getCurrentLine()
 {
    switch( currentNPC )
    {
+      case 999999:
+         currentArray = hard_enemy_dialogue;
+         player.armor++;
+         break;
       case 12112:
          if( !npc12112_talked_to )
          {
