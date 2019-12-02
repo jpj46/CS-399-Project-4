@@ -82,9 +82,12 @@ var npc40121X_dialogue = [];
 var npc12112X_dialogue = [];
 var npc174_dialogue = [];
 var npc174X_dialogue = [];
+var npc654_dialogue = [];
+var npc654X_dialogue = [];
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
 var npc174_talked_to = false;
+var npc654_talked_to = false;
 var currentDialogue = 0;
 var currentLine;
 var currentNPC = 0;
@@ -102,6 +105,8 @@ var battleBackground;
 const PLAYERMOVEAMOUNT = 25;
 const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
+//const PLAYER_START_X = PLAYERMOVEAMOUNT * 65;
+//const PLAYER_START_Y = PLAYERMOVEAMOUNT * 7;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -202,6 +207,7 @@ function generateLevel()
 						name: "Soldier", 
 						attack: 2, 
 						speed: 7});*/
+                  
 	/*enemy2 = new Enemy({id: SKELETON,
 						num_charges: 6,
 						x: PLAYERMOVEAMOUNT * , 
@@ -277,8 +283,8 @@ function generateLevel()
 						x: PLAYERMOVEAMOUNT * 80, 
 						y: PLAYERMOVEAMOUNT * 80,
                   state: createMovieClip( PLAYERMOVEAMOUNT * 80, PLAYERMOVEAMOUNT * 80,
-                                          1, 1, "Demon_Leech", 1, 3 ), 
-						name: "Demon_Leech", 
+                                          1, 1, "Demon Leech", 1, 3 ), 
+						name: "Demon Leech", 
 						attack: 0, 
 						speed: 8});
    
@@ -321,6 +327,57 @@ function generateLevel()
 						name: "Pixie", 
 						attack: 2, 
 						speed: 8});
+                  
+   enemy13 = new Enemy({id: BAT,
+						num_charges: 2,
+						x: PLAYERMOVEAMOUNT * 43, 
+						y: PLAYERMOVEAMOUNT * 57,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 43, PLAYERMOVEAMOUNT * 57,
+                                          1, 1, "Bat", 1, 3 ), 
+						name: "Bat", 
+						attack: 2, 
+						speed: 8});
+                  
+   enemy14 = new Enemy({id: POSSESSED_SOLDIER,
+						num_charges: 4,
+						x: PLAYERMOVEAMOUNT * 61, 
+						y: PLAYERMOVEAMOUNT * 40, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 61, PLAYERMOVEAMOUNT * 40,
+                                          .6, .6, "Overworld_Possessed_Soldier", 1, 3 ), 
+						name: "Soldier", 
+						attack: 2, 
+						speed: 7});
+   
+   enemy15 = new Enemy({id: POSSESSED_SOLDIER,
+						num_charges: 4,
+						x: PLAYERMOVEAMOUNT * 65, 
+						y: PLAYERMOVEAMOUNT * 19, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 65, PLAYERMOVEAMOUNT * 19,
+                                          .6, .6, "Overworld_Possessed_Soldier", 1, 3 ), 
+						name: "Soldier", 
+						attack: 2, 
+						speed: 7});
+   
+   enemy16 = new Enemy({id: POSSESSED_SOLDIER,
+						num_charges: 4,
+						x: PLAYERMOVEAMOUNT * 87, 
+						y: PLAYERMOVEAMOUNT * 17, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 87, PLAYERMOVEAMOUNT * 17,
+                                          .6, .6, "Overworld_Possessed_Soldier", 1, 3 ), 
+						name: "Soldier", 
+						attack: 2, 
+						speed: 7});
+   
+   enemy17 = new Enemy({id: POSSESSED_SOLDIER,
+						num_charges: 4,
+						x: PLAYERMOVEAMOUNT * 66, 
+						y: PLAYERMOVEAMOUNT * 5, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 66, PLAYERMOVEAMOUNT * 5,
+                                          .6, .6, "Overworld_Possessed_Soldier", 1, 3 ), 
+						name: "Soldier", 
+						attack: 2, 
+						speed: 7});
+   
    
    
 		
@@ -336,13 +393,14 @@ function generateLevel()
    enemies.push( enemy10 );
    enemies.push( enemy11 );
    enemies.push( enemy12 );
-   
-   /** For later enemies
    enemies.push( enemy13 );
    enemies.push( enemy14 );
    enemies.push( enemy15 );
    enemies.push( enemy16 );
    enemies.push( enemy17 );
+
+   
+   /** For later enemies
    enemies.push( enemy18 );
    enemies.push( enemy19 );
    enemies.push( enemy20 );
@@ -442,13 +500,13 @@ function generateLevel()
    game_stage.addChild( enemy10.state );
    game_stage.addChild( enemy11.state );
    game_stage.addChild( enemy12.state );
-   
-   /** For later enemies
    game_stage.addChild( enemy13.state );
    game_stage.addChild( enemy14.state );
    game_stage.addChild( enemy15.state );
    game_stage.addChild( enemy16.state );
    game_stage.addChild( enemy17.state );
+   
+   /** For later enemies
    game_stage.addChild( enemy18.state );
    game_stage.addChild( enemy19.state );
    game_stage.addChild( enemy20.state );
@@ -986,6 +1044,7 @@ function checkNPCInteraction()
           checkValidInteraction( 43, 107 ) ||
           checkValidInteraction( 4, 123 ) ||
           checkValidInteraction( 40, 121 ) ||
+          checkValidInteraction( 65, 4 ) ||
           checkValidInteraction( 17, 4 );
 }
 
@@ -1097,6 +1156,24 @@ function getCurrentLine()
          }
          
          break; 
+         
+      case 654:
+         if( !npc654_talked_to )
+         {
+            currentArray = npc654_dialogue;
+            player.armor++;
+            player.max_armor++;
+           // player_armor++;
+           // player_max_armor++;
+            npc654_talked_to = true;
+         }
+         
+         else
+         {
+            currentArray = npc654X_dialogue;
+         }
+         
+         break;
    }
 }
 
@@ -1237,6 +1314,13 @@ function initialize_npc_dialogue()
    
    // Needs enter when longer than --------------------------------
    npc174X_dialogue.push( "You saved me, thank you!" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc654_dialogue.push( "You saved me, thank you! Here..."); 
+   npc654_dialogue.push( "Your armor has increased!" );
+   
+   // Needs enter when longer than --------------------------------
+   npc654X_dialogue.push( "You saved me, thank you!" ); 
    
 }
 
