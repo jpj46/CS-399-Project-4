@@ -95,12 +95,12 @@ var npc95108_dialogue = [];
 var npc94122_dialogue = [];
 var npc94122X_dialogue = [];
 var npc87118_dialogue = [];
-var npc87118X_dialogue = [];
 
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
 var npc174_talked_to = false;
 var npc654_talked_to = false;
+var npc94122_talked_to = false;
 var currentDialogue = 0;
 var currentLine;
 var currentNPC = 0;
@@ -118,8 +118,8 @@ var battleBackground;
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 //const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 65;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 7;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 55;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 109;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -1117,6 +1117,15 @@ function checkNPCInteraction()
           checkValidInteraction( 4, 123 ) ||
           checkValidInteraction( 40, 121 ) ||
           checkValidInteraction( 65, 4 ) ||
+          checkValidInteraction( 57, 108 ) ||
+          checkValidInteraction( 65, 111 ) ||
+          checkValidInteraction( 67, 114 ) ||
+          checkValidInteraction( 63, 122 ) ||
+          checkValidInteraction( 81, 115 ) ||
+          checkValidInteraction( 90, 113 ) ||
+          checkValidInteraction( 95, 108 ) ||
+          checkValidInteraction( 94, 122 ) ||
+          checkValidInteraction( 87, 118 ) ||
           checkValidInteraction( 17, 4 );
 }
 
@@ -1246,6 +1255,46 @@ function getCurrentLine()
          }
          
          break;
+         
+      case 57108:
+         currentArray = npc57108_dialogue;
+         break;
+      case 65111:
+         currentArray = npc65111_dialogue;
+         break;
+      case 67114:
+         currentArray = npc67114_dialogue;
+         break;
+      case 63122:
+         currentArray = npc63122_dialogue;
+         break;
+      case 81115:
+         currentArray = npc81115_dialogue;
+         break;
+      case 90113:
+         currentArray = npc90113_dialogue;
+         break;
+       case 95108:
+         currentArray = npc95108_dialogue;
+         break;
+      case 94122:
+         if( !npc94122_talked_to )
+         {
+            currentArray = npc94122_dialogue;
+            player.armor++;
+            player.max_armor++;
+            npc94122_talked_to = true;
+         }
+         
+         else
+         {
+            currentArray = npc94122X_dialogue;
+         }
+         
+         break;
+      case 87118:
+         currentArray = npc87118_dialogue;
+         break;
    }
 }
 
@@ -1294,7 +1343,7 @@ function initialize_npc_dialogue()
    
    // Needs enter when longer than --------------------------------
    npc17113_dialogue.push( "Oh someone help us! There is a great\n"+
-                           "evil that wishes to destory us all!\n" );
+                           "evil that wishes to destroy us all!\n" );
    npc17113_dialogue.push( "You there, please help! There is a\n"+
                            "monster that is going to wipe out the\n"+
                            "world!" );
@@ -1393,6 +1442,41 @@ function initialize_npc_dialogue()
    
    // Needs enter when longer than --------------------------------
    npc654X_dialogue.push( "You saved me, thank you!" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc57108_dialogue.push( "Yo yo yo." ); 
+   npc57108_dialogue.push( "Everything's good here pal." ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc65111_dialogue.push( "How's it going millennial?" );
+   npc65111_dialogue.push( "Stop calling me a boomer, k?" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc67114_dialogue.push( "Hey3" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc63122_dialogue.push( "Hey4" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc81115_dialogue.push( "Hey5" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc90113_dialogue.push( "Hey6" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc95108_dialogue.push( "Hey7" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc94122_dialogue.push( "Hey8" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc94122X_dialogue.push( "Hey9" ); 
+   
+   // Needs enter when longer than --------------------------------
+   npc87118_dialogue.push( "You look injured! Let me patch you\n" +
+                           "up!");
+   npc87118_dialogue.push( "Your health and armor has been \n"+
+                           "restored!" );
    
 }
 
@@ -1520,7 +1604,7 @@ function buildScreens() {
 
    
    // Adds regular text -----------------------------------------------------
-   var gameInstructDesc = new PIXI.Text( "The hero must defeated the Shadow\n" + 
+   var gameInstructDesc = new PIXI.Text( "The hero must defeat the Shadow\n" + 
                                          "King and save the world! Use WASD\n" + 
                                          "to navigate the world. Talk to as\n" +
                                          "many people as you can in order to\n" + 
