@@ -84,6 +84,19 @@ var npc174_dialogue = [];
 var npc174X_dialogue = [];
 var npc654_dialogue = [];
 var npc654X_dialogue = [];
+
+var npc57108_dialogue = [];
+var npc65111_dialogue = [];
+var npc67114_dialogue = [];
+var npc63122_dialogue = [];
+var npc81115_dialogue = [];
+var npc90113_dialogue = [];
+var npc95108_dialogue = [];
+var npc94122_dialogue = [];
+var npc94122X_dialogue = [];
+var npc87118_dialogue = [];
+var npc87118X_dialogue = [];
+
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
 var npc174_talked_to = false;
@@ -103,10 +116,10 @@ var currentArmorSprite;
 var battleBackground;
 
 const PLAYERMOVEAMOUNT = 25;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-//const PLAYER_START_X = PLAYERMOVEAMOUNT * 65;
-//const PLAYER_START_Y = PLAYERMOVEAMOUNT * 7;
+//const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
+//const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 65;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 7;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -180,6 +193,7 @@ function generateLevel()
 						name: "Goblin", 
 						attack: 1, 
 						speed: 6});*/
+                  
 	/*enemy2 = new Enemy({id: OGRE,
 						num_charges: 3,
 						x: PLAYERMOVEAMOUNT * , 
@@ -189,6 +203,7 @@ function generateLevel()
 						name: "Ogre", 
 						attack: 3, 
 						speed: 2});*/
+                  
 	/*enemy2 = new Enemy({id: PIXIE,
 						num_charges: 2,
 						x: PLAYERMOVEAMOUNT * , 
@@ -378,7 +393,15 @@ function generateLevel()
 						attack: 2, 
 						speed: 7});
    
-   
+   enemy18 = new Enemy({id: POSSESSED_SOLDIER,
+						num_charges: 4,
+						x: PLAYERMOVEAMOUNT * 94, 
+						y: PLAYERMOVEAMOUNT * 5, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 94, PLAYERMOVEAMOUNT * 5,
+                                          .6, .6, "Overworld_Possessed_Soldier", 1, 3 ), 
+						name: "Soldier", 
+						attack: 2, 
+						speed: 7});
    
 		
 	enemies.push( enemy );
@@ -398,10 +421,10 @@ function generateLevel()
    enemies.push( enemy15 );
    enemies.push( enemy16 );
    enemies.push( enemy17 );
+   enemies.push( enemy18 );
 
    
    /** For later enemies
-   enemies.push( enemy18 );
    enemies.push( enemy19 );
    enemies.push( enemy20 );
    enemies.push( enemy21 );
@@ -505,9 +528,9 @@ function generateLevel()
    game_stage.addChild( enemy15.state );
    game_stage.addChild( enemy16.state );
    game_stage.addChild( enemy17.state );
+   game_stage.addChild( enemy18.state );
    
    /** For later enemies
-   game_stage.addChild( enemy18.state );
    game_stage.addChild( enemy19.state );
    game_stage.addChild( enemy20.state );
    game_stage.addChild( enemy21.state );
