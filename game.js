@@ -94,7 +94,7 @@ var playerArmorText;
 var playerArmorArray = [];
 var currentHealthSprite;
 var currentArmorSprite;
-var gameWin = false;
+var battleBackground;
 
 const PLAYERMOVEAMOUNT = 25;
 const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
@@ -116,6 +116,11 @@ const DKEY = 68;
 const SPACE = 32;
 const SHIFT = 16;
 const ENTER = 13;
+
+const FOREST = 1000;
+const DESERT = 1001;
+const SNOW = 1002;
+const CAVE = 1003;
 
 const BAT = 1;
 const GOBLIN = 2;
@@ -246,9 +251,9 @@ function generateLevel()
    
    enemy6 = new Enemy({id: SHADOW_KING,
 						num_charges: 8,
-						x: PLAYERMOVEAMOUNT * 0, 
-						y: PLAYERMOVEAMOUNT * 0,
-						state: createMovieClip( PLAYERMOVEAMOUNT * 0, PLAYERMOVEAMOUNT * 0,
+						x: PLAYERMOVEAMOUNT * 96, 
+						y: PLAYERMOVEAMOUNT * 58,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 96, PLAYERMOVEAMOUNT * 58,
                                           1, 1, "Overworld_Shadow_King", 1, 5 ), 
 						name: "Shadow King", 
 						attack: 1, 
@@ -256,9 +261,9 @@ function generateLevel()
                   
    enemy7 = new Enemy({id: SEXY_HENCHMAN,
 						num_charges: 9,
-						x: PLAYERMOVEAMOUNT * 0, 
-						y: PLAYERMOVEAMOUNT * 0,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 0, PLAYERMOVEAMOUNT * 0,
+						x: PLAYERMOVEAMOUNT * 97, 
+						y: PLAYERMOVEAMOUNT * 56,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 97, PLAYERMOVEAMOUNT * 56,
                                           1, 1, "Overworld_Sexy_Henchman", 1, 5 ), 
 						name: "Sexy Henchman", 
 						attack: 2, 
@@ -266,9 +271,9 @@ function generateLevel()
    
    enemy8 = new Enemy({id: DEMON_LEECH,
 						num_charges: 10,
-						x: PLAYERMOVEAMOUNT * 0, 
-						y: PLAYERMOVEAMOUNT * 0,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 0, PLAYERMOVEAMOUNT * 0,
+						x: PLAYERMOVEAMOUNT * 80, 
+						y: PLAYERMOVEAMOUNT * 80,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 80, PLAYERMOVEAMOUNT * 80,
                                           1, 1, "Demon_Leech", 1, 3 ), 
 						name: "Demon_Leech", 
 						attack: 0, 
@@ -1218,6 +1223,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 3;
          swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
          player.direction = DOWN;
+         battleBackground = FOREST;
          break;
          
       case 204:
@@ -1225,6 +1231,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 107;
          swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
          player.direction = DOWN;
+         battleBackground = FOREST;
          break;
       
       case 4544:
@@ -1232,6 +1239,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 44;
          swapPlayer(player.state.position.x, player.state.position.y, 1, 1, "PlayerUp", 1, 3  );
          player.direction = UP;
+         battleBackground = DESERT;
          break;
       
       case 4555:
@@ -1239,6 +1247,7 @@ function teleportPlayer( teleportIndex )
         player.state.position.y = PLAYERMOVEAMOUNT * 44;
         swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerUp", 1, 3  );
         player.direction = UP;
+        battleBackground = FOREST;
         break;
       
       case 495:
@@ -1246,6 +1255,7 @@ function teleportPlayer( teleportIndex )
         player.state.position.y = PLAYERMOVEAMOUNT * 107;
         swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
         player.direction = DOWN;
+        battleBackground = DESERT;
         break;
       
       case 10655:
@@ -1253,6 +1263,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 5;
          swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
          player.direction = DOWN;
+         battleBackground = FOREST;
          break;
       
       case 10698:
@@ -1260,6 +1271,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 94;
          swapPlayer( player.state.position.x,player.state.position.y, 1, 1, "PlayerUp", 1, 3  );
          player.direction = UP;
+         battleBackground = SNOW;
          break;
          
       case 9501:
@@ -1267,6 +1279,7 @@ function teleportPlayer( teleportIndex )
         player.state.position.y = PLAYERMOVEAMOUNT * 107;
          swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
          player.direction = DOWN;
+         battleBackground = DESERT;
          break;
       
       case 5644:
@@ -1274,6 +1287,7 @@ function teleportPlayer( teleportIndex )
         player.state.position.y = PLAYERMOVEAMOUNT * 57;
         swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
         player.direction = DOWN;
+        battleBackground = CAVE;
         break;
       
       case 5655:
@@ -1281,6 +1295,7 @@ function teleportPlayer( teleportIndex )
         player.state.position.y = PLAYERMOVEAMOUNT * 57;
         swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
         player.direction = DOWN;
+        battleBackground = SNOW;
         break;
    }
 }
@@ -1455,7 +1470,7 @@ function buildScreens() {
    gameCredBackText.x = GAME_WIDTH - 25; gameCredBackText.y = GAME_WIDTH - 25;
    gameWinText.x = GAME_WIDTH/2; gameWinText.y = GAME_HEIGHT/3 + 10;
    gameLoseText.x = GAME_WIDTH/2; gameLoseText.y = GAME_HEIGHT/3 + 10;
-   gameWinRestartText.x = GAME_WIDTH/2; gameWinRestartText.y = GAME_HEIGHT/3;
+   gameWinRestartText.x = GAME_WIDTH/2; gameWinRestartText.y = 2 * GAME_HEIGHT/3;
    gameLoseRestartText.x = GAME_WIDTH/2; gameLoseRestartText.y = 2 * GAME_HEIGHT/3;
    
    // Add screens to stage
@@ -1538,13 +1553,15 @@ function playerAttack( foe ) {
 		if ( foe.health <= 0 ) { 
 			
 			//alert("The enemy has been slain.");
-			if (foe.num_charges <= 1) {
+			if (foe.num_charges <= 1) 
+         {
 				foe.is_alive = false;
 				player.attack++;
 				var index = enemies.indexOf( foe );
 				if (index > -1) {
 					enemies.splice(index, 1);
 				}
+            
 				endBattle(foe);
 			}
 			
@@ -1664,6 +1681,7 @@ function endBattle ( foe ) {
    {
       player.attack += 1;
    }
+   
 
 	moveHand(hand.position.x, menu_text.position.y + 
                            menu_text.height - 10);
