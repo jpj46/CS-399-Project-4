@@ -122,8 +122,8 @@ dialogueText.y = 405;
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 //const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 55;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 109;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 25;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 4;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -1088,8 +1088,23 @@ function keydownEventHandler(event) {
          }
       }
       
-      else if ( dialogue_active || currentNPC == 999999 )
+      else if ( dialogue_active )
       {
+         if( currentNPC == 999999 && currentDialogue == 0 )
+         {
+            getCurrentLine();
+            
+            dialogueBox = createRoundedRect( 0, 400, 500, 100, 10, "white" );
+            dialogueText.setText(currentArray[currentDialogue]);
+            currentDialogue++;
+
+            master_stage.addChild( dialogueBox );
+            master_stage.addChild( dialogueText );
+
+            dialogue_active = true;
+            dialogueEnd = false;
+         }
+         
          if ( event.keyCode == ENTER )
          {
             if( !dialogueEnd )
@@ -1159,7 +1174,6 @@ function getCurrentLine()
    {
       case 999999:
          currentArray = hard_enemy_dialogue;
-         player.armor++;
          break;
       case 12112:
          if( !npc12112_talked_to )
@@ -1482,6 +1496,9 @@ function initialize_npc_dialogue()
                            "up!");
    npc87118_dialogue.push( "Your health and armor has been \n"+
                            "restored!" );
+                           
+   hard_enemy_dialogue.push( "You beat a tough enemy!" );
+   hard_enemy_dialogue.push( "Your armor has increased!" );
    
 }
 
@@ -1832,8 +1849,6 @@ function playerAttack( foe ) {
 				if(foe.id != SEXY_HENCHMAN ) {
 					if ( this.id == OGRE || this.id == SKELETON ) {
 						player.armor++;
-						currentNPC = 999999;
-						dialogue_active = true;
 					}
 					foe.is_alive = false;
 					player.attack++;
@@ -1843,6 +1858,8 @@ function playerAttack( foe ) {
 					}
 				
 					endBattle(foe);
+               currentNPC = 999999;
+               dialogue_active = true;
 				}
 				
 				else {
@@ -2145,8 +2162,7 @@ Enemy.prototype.updateHealthBar = function () {
 		if(this.id != SEXY_HENCHMAN ) {
 			if ( this.id == OGRE || this.id == SKELETON ) {
 				player.armor++;
-				currentNPC = 999999;
-				dialogue_active = true;
+				
 			}
 			
 			this.is_alive = false;
@@ -2157,6 +2173,8 @@ Enemy.prototype.updateHealthBar = function () {
 			}
 			
 			endBattle(this);
+         currentNPC = 999999;
+		   dialogue_active = true;
 		}
 		
 		else {
