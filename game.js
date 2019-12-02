@@ -325,8 +325,8 @@ function generateLevel()
                   state: createMovieClip( PLAYERMOVEAMOUNT * 97, PLAYERMOVEAMOUNT * 56,
                                           1, 1, "Overworld_Sexy_Henchman", 1, 5 ), 
 						name: "Sexy Henchman", 
-						attack: 2, 
-						speed: 8});
+						attack: 5, 
+						speed: 3});
    
    enemy8 = new Enemy({id: DEMON_LEECH,
 						num_charges: 10,
@@ -335,8 +335,8 @@ function generateLevel()
                   state: createMovieClip( PLAYERMOVEAMOUNT * 80, PLAYERMOVEAMOUNT * 80,
                                           1, 1, "Demon Leech", 1, 3 ), 
 						name: "Demon Leech", 
-						attack: 0, 
-						speed: 8});
+						attack: 6, 
+						speed: 5});
    
    enemy9 = new Enemy({id: PIXIE,
 						num_charges: 2,
