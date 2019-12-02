@@ -153,6 +153,9 @@ const SKELETON = 7;
 const SHADOW_KING = 8;
 const SEXY_HENCHMAN = 9;
 const DEMON_LEECH = 10;
+const SNOW_DEVIL = 11;
+const ICE_WRAITH = 12;
+const EVIL_SNOWMAN = 13;
  
 function generateLevel() 
 {   
@@ -243,7 +246,7 @@ function generateLevel()
 						attack: 4, 
 						speed: 8});
                   
-   enemy3 = new Enemy({id: GOBLIN,
+  /** enemy3 = new Enemy({id: GOBLIN,
 						num_charges: 1,
 						x: PLAYERMOVEAMOUNT * 18, 
 						y: PLAYERMOVEAMOUNT * 4,
@@ -251,7 +254,8 @@ function generateLevel()
                                           1, 1, "Goblin", 1, 2 ), 
 						name: "Goblin", 
 						attack: 1, 
-						speed: 6});
+						speed: 6}); //changed for testing purposes
+						
                   
    enemy4 = new Enemy({id: GOBLIN,
 						num_charges: 1,
@@ -261,7 +265,7 @@ function generateLevel()
                                           1, 1, "Goblin", 1, 2 ), 
 						name: "Goblin", 
 						attack: 1, 
-						speed: 6});
+						speed: 6}); //changed for testing purposes
    
    enemy5 = new Enemy({id: GOBLIN,
 						num_charges: 1,
@@ -271,7 +275,38 @@ function generateLevel()
                                           1, 1, "Goblin", 1, 2 ),  
 						name: "Goblin", 
 						attack: 1, 
-						speed: 6});
+						speed: 6}); //changed for testing purposes */
+						
+	enemy3 = new Enemy({id: EVIL_SNOWMAN,
+						num_charges: 7,
+						x: PLAYERMOVEAMOUNT * 18, 
+						y: PLAYERMOVEAMOUNT * 4,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 18, PLAYERMOVEAMOUNT * 4,
+                                          1, 1, "Overworld_Evil_Snowman", 1, 3 ), 
+						name: "Evil Snowman", 
+						attack: 4, 
+						speed: 3}); //changed for testing purposes
+						
+                  
+   enemy4 = new Enemy({id: ICE_WRAITH,
+						num_charges: 5,
+						x: PLAYERMOVEAMOUNT * 16, 
+						y: PLAYERMOVEAMOUNT * 40,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 16, PLAYERMOVEAMOUNT * 40,
+                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
+						name: "Ice Wraith", 
+						attack: 3, 
+						speed: 8}); //changed for testing purposes
+   
+   enemy5 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 8, 
+						y: PLAYERMOVEAMOUNT * 27,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 8, PLAYERMOVEAMOUNT * 27,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6}); //changed for testing purposes
    
    enemy6 = new Enemy({id: SHADOW_KING,
 						num_charges: 8,
@@ -686,12 +721,25 @@ function generateBattleMenu()
 				current_enemy.state = createMovieClip( 250, 135, 1.25, 1.25, current_enemy.name, 1, 3 );
 				break;
 			case BAT:
+				enemy_text.position.x += 10;
 				current_enemy.state = createMovieClip( 225, 150, 2, 2, current_enemy.name, 1, 7 );
 				current_enemy.state.animationSpeed = 0.25;
 				break;
 			case EVIL_TREE:
 				enemy_text.position.x -= 10;
 				current_enemy.state = createMovieClip( 205, 75, 1, 1, current_enemy.name, 1, 3 );
+				break;
+			case SNOW_DEVIL:
+				enemy_text.position.x -= 40;
+				current_enemy.state = createMovieClip( 260, 215, 1, 1, current_enemy.name, 1, 3 );
+				break;
+			case ICE_WRAITH:
+				enemy_text.position.x -= 25;
+				current_enemy.state = createMovieClip( 225, 125, 1, 1, current_enemy.name, 1, 3 );
+				break;
+			case EVIL_SNOWMAN:
+				enemy_text.position.x -= 65;
+				current_enemy.state = createMovieClip( 250, 125, 2, 2, current_enemy.name, 1, 3 );
 				break;
 			case SHADOW_KING:
 				enemy_text.position.x -= 50;
@@ -1702,6 +1750,10 @@ function playerAttack( foe ) {
 				
 					endBattle(foe);
 				}
+				
+				else {
+					transform(this); //Move after dialogue
+				}
 			}
 			
 			foe.loseCharge();
@@ -1908,6 +1960,17 @@ function swapPlayer ( x, y, scale_x, scale_y, image, low, high ) {
 	game_stage.addChild( player.state );
 }
 
+function transform ( enemy ) {
+	clearBattleScreen();
+			enemy.is_hit = false;
+			for(var i in enemies){
+				var foe = enemies[i];
+				if(foe.id == DEMON_LEECH) {
+					foe.is_hit = true;
+				}
+			} 
+			generateBattleMenu();
+}
 
 /**
 	Helper function that returns a random number from 1 to max
@@ -1997,10 +2060,7 @@ Enemy.prototype.updateHealthBar = function () {
 		}
 		
 		else {
-			clearBattleScreen();
-			this.is_hit = false;
-			enemies[7].is_hit = true;
-			generateBattleMenu();
+			transform(this); //Move after dialogue
 		}
 	}
 	
