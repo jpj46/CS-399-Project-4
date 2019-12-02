@@ -1825,6 +1825,11 @@ function playerAttack( foe ) {
 			if (foe.num_charges <= 1) 
          {
 				if(foe.id != SEXY_HENCHMAN ) {
+					if ( this.id == OGRE || this.id == SKELETON ) {
+						player.armor++;
+						currentNPC = 999999;
+						dialogue_active = true;
+					}
 					foe.is_alive = false;
 					player.attack++;
 					var index = enemies.indexOf( foe );
@@ -2133,6 +2138,12 @@ Enemy.prototype.updateHealthBar = function () {
 	
 	if ( this.num_charges <= 0 || this.health == 0 ) {
 		if(this.id != SEXY_HENCHMAN ) {
+			if ( this.id == OGRE || this.id == SKELETON ) {
+				player.armor++;
+				currentNPC = 999999;
+				dialogue_active = true;
+			}
+			
 			this.is_alive = false;
 			player.attack++;
 			var index = enemies.indexOf( this );
