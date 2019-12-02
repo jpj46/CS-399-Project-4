@@ -575,6 +575,7 @@ function generateBattleMenu()
 	  
 	  battle_stage.addChild( player.state );
 	  
+	  
 	  current_enemy = checkTarget();
 	  current_enemy.visible = true;
 	  enemy_text = new PIXI.extras.BitmapText(current_enemy.name, {font: "16px gamefont"});
@@ -1555,14 +1556,16 @@ function playerAttack( foe ) {
 			//alert("The enemy has been slain.");
 			if (foe.num_charges <= 1) 
          {
-				foe.is_alive = false;
-				player.attack++;
-				var index = enemies.indexOf( foe );
-				if (index > -1) {
-					enemies.splice(index, 1);
+				if(foe.id != SEXY_HENCHMAN ) {
+					foe.is_alive = false;
+					player.attack++;
+					var index = enemies.indexOf( foe );
+					if (index > -1) {
+						enemies.splice(index, 1);
+					}
+				
+					endBattle(foe);
 				}
-            
-				endBattle(foe);
 			}
 			
 			foe.loseCharge();
@@ -1846,14 +1849,23 @@ Enemy.prototype.updateHealthBar = function () {
 	}
 	
 	if ( this.num_charges <= 0 || this.health == 0 ) {
-		this.is_alive = false;
-		player.attack++;
-		var index = enemies.indexOf( this );
-		if (index > -1) {
-			enemies.splice(index, 1);
+		if(this.id != SEXY_HENCHMAN ) {
+			this.is_alive = false;
+			player.attack++;
+			var index = enemies.indexOf( this );
+			if (index > -1) {
+				enemies.splice(index, 1);
+			}
+			
+			endBattle(this);
 		}
 		
-		endBattle(this);
+		else {
+			clearBattleScreen();
+			this.is_hit = false;
+			enemies[7].is_hit = true;
+			generateBattleMenu();
+		}
 	}
 	
 	threat_stage.removeChildren();
