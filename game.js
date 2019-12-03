@@ -116,8 +116,8 @@ dialogueText.y = 405;
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 //const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 95;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 110;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 60;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 60;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -1725,17 +1725,17 @@ function initialize_npc_dialogue()
    hard_enemy_dialogue.push( "Your armor has increased!" );
    
    //                        ---------------------------------------
-   boss_enemy_dialogue.push("You... you ANIMAL! How could you hurt\n"+
-                            "me, I am IMMORTAL! I shouldn't be hurt\n"+
-                            "by such simple human tools...");
-   boss_enemy_dialogue.push("I have a proposal for you scum, join me\n"+
-                            "and rule this realm with me! We would be\n"+
-                            "invincible, unbeatable! And I'd be yours");
+   boss_enemy_dialogue.push("You... you ANIMAL! How could YOU \n"+
+                            "hurt me, I am IMMORTAL! I shouldn't \n"+
+                            "be hurt by such simple human tools...");
+   boss_enemy_dialogue.push("I have a proposal for you scum, join \n"+
+                            "me and rule this realm with me! We\n"+
+                            "would be invincible, unbeatable!");
    boss_enemy_dialogue.push("Accept or decline the demon's offer.\n"+
                             "Yes:  Press Q         No: Press E");
-   boss_enemy_dialogue.push("You would betray my GRACIOUS OFFER??\n"+
-                            "THEN DIE WITH THE REST OF THE HUMAN\n"+
-                            "SCUM!!! BEHOLD MY TRUE FORM!!! HAHAAH!!");
+   boss_enemy_dialogue.push("You betrayed my GRACIOUS OFFER??\n"+
+                            "THEN DIE WITH ALL OF THE HUMAN\n"+
+                            "SCUM!!! BEHOLD MY TRUE FORM!!!");
    
 }
 
@@ -1845,7 +1845,7 @@ function buildScreens() {
    var playerAttackText = new PIXI.Text( "Attack:" , {fill : 0xFFFFFF} );
    var playerHealthText = new PIXI.Text( "Health:", {fill : 0xFFFFFF} );
    var playerArmorText = new PIXI.Text( "Armor:", {fill : 0xFFFFFF} );
-   var gameTitleText = new PIXI.Text( "RPG!", {fill : 0xFFFFFF} );
+   var gameTitleText = new PIXI.Text( "Shadow Hero", {fill : 0xFFFFFF} );
    var gameInstructTitleText = new PIXI.Text( "Instructions", {fill : 0xFFFFFF} );
    var gameCreditTitleText = new PIXI.Text( "Credits", {fill : 0xFFFFFF} );
    var gameWinText = new PIXI.Text( "Game over!\nYou win!", {fill : 0xFFFFFF, align: 'center'} );
