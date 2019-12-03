@@ -2101,6 +2101,7 @@ function playerAttack( foe ) {
 				}
 				
 				else if ( foe.id == DEMON_LEECH) {
+					endBattle(foe);
 					gameWinScreen.visible = true;
 				}
 				
