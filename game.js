@@ -1878,7 +1878,7 @@ function buildScreens() {
                                      "Pehringer\n\nRenderer used: PixiJS", {fill : 0xFFFFFF} );
 
    // Declare texts interactable
-   gameStatsText.interactive = true;
+   gameStatsText.interactive = false;
    gameStatsBackText.interactive = true;
    gameStartText.interactive = true;
    gameInstructText.interactive = true;
@@ -1891,6 +1891,7 @@ function buildScreens() {
    
    // Declares interactable text functions
    gameStatsText.click = function(event) { statsScreen.visible = true;
+										   gameStatsText.interactive = true;
                                            playerAttackText.setText( "Attack: " + player.attack );
                                            currentHealthSprite = createSprite( 103, 437, 1, 1, "ex_meter" + 
                                                                   player.health + ".png" );
