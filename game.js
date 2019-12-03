@@ -740,7 +740,7 @@ function generateLevel()
    game_stage.addChild( enemy5.state );
 	game_stage.addChild( enemy6.state );
    game_stage.addChild( enemy7.state );
-   game_stage.addChild( enemy8.state );
+   //game_stage.addChild( enemy8.state );
 	game_stage.addChild( enemy9.state );
    game_stage.addChild( enemy10.state );
    game_stage.addChild( enemy11.state );
