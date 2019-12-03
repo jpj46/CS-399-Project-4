@@ -15,6 +15,24 @@ PIXI.loader
   .add('assets/assets.json')
   .add('assets/map.json')
   .add('assets/tiles.png')
+  .add("Player_attack.mp3")
+  .add("Powerup.mp3")
+  .add("Pixi_Attack.mp3")
+  .add("Pixi_Death.mp3")
+  .add("Damaged_Player.mp3")
+  .add("Dialogue.mp3")
+  .add("Run_away.mp3")
+  .add("PlayerWinsGame.mp3")
+  .add("potion.mp3")
+  .add("Possessed_Soldier_Att.mp3")
+  .add("Possessed_Soldier_Death.mp3")
+  .add("Evil_Tree_Attack.mp3")
+  .add("Evil_Tree_Death.mp3")
+  .add("Final_Form_Attack.mp3")
+  .add("Final_Form_Death.mp3")
+  .add("Goblin_Attack.mp3")
+  .add("Goblin_Death.mp3")
+  .add("Menu.mp3")
   .load(generateLevel);
 
 var battle_stage = new PIXI.Container();
@@ -88,12 +106,17 @@ var currentNPC = 0;
 var dialogueEnd = true;
 var dialogueBox;
 var dialogueText;
+var dialogueSound;
 var playerAttackText;
+var playerAttackSound;
+var playerDamageSound;
 var playerHealthText;
+var playerHealSound;
 var playerArmorText;
 var playerArmorArray = [];
 var currentHealthSprite;
 var currentArmorSprite;
+var menuSound;
 var gameWin = false;
 
 const PLAYERMOVEAMOUNT = 25;
@@ -140,6 +163,9 @@ function generateLevel()
     npcArray = world.getObject("NPC").data;
 	player = new Player();
 	game_stage.addChild( player.state );
+	
+	menuSound = PIXI.sound.Sound.from("Menu.mp3");
+	dialogueSound = PIXI.sound.Sound.from("Dialogue.mp3");
 
 	//player = createMovieClip( PLAYER_START_X, PLAYER_START_Y, 1, 1, "PlayerRight", 1, 3 );
 	//playerDirection = RIGHT;
@@ -998,6 +1024,7 @@ function checkValidInteraction( npcX, npcY )
    {
       currentNPC = parseInt("" + npcX + npcY);
       getCurrentLine();
+	  dialogueSound.play();
       return true;
    }
 }
