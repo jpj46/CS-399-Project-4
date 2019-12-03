@@ -116,8 +116,8 @@ dialogueText.y = 405;
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 //const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 40;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 93;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 95;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 110;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -1693,26 +1693,37 @@ function initialize_npc_dialogue()
    npc65111_dialogue.push( "How's it going millennial?" );
    npc65111_dialogue.push( "Stop calling me a boomer, k?" ); 
    
-   // Needs enter when longer than --------------------------------
-   npc67114_dialogue.push( "Hey3" ); 
+   // Needs enter when longe---------------------------------------
+   npc67114_dialogue.push( "I stand here in the middle of town\n" +
+                           "to remind myself that I am tiny in this\n"+
+                           "universe and mean nothing."); 
+   
+   // Needs enter when long ---------------------------------------
+   npc63122_dialogue.push( "I just wanna play ball without being\n" +
+                           "chased by a possessed soldier..."); 
    
    // Needs enter when longer than --------------------------------
-   npc63122_dialogue.push( "Hey4" ); 
+   npc81115_dialogue.push( "How do they expect a retirement town\n" +
+                           "to be safe from the likes of the King?");
+   npc81115_dialogue.push( "We can barely defend ourselves from\n" +
+                           "the weather out here!");
+   
+   // Needs enter when longe---------------------------------------
+   npc90113_dialogue.push( "This dusty place will soon wither and\n" +
+                           "crumble... Just like my dear Denise"); 
+   
+   // Needs enter when han ---------------------------------------
+   npc95108_dialogue.push( "This way to the king! Do not let him\n" +
+                           "destroy our lives, please!"); 
+   
+   // Needs enter when longe---------------------------------------
+   npc94122_dialogue.push( "Oh, your armor is looking a tad worn.\n" +
+                           "Allow me to lather it in ogre milk to\n" +
+                           "restore its luster.");
+   npc94122_dialogue.push( "Your armor has increased!" );
    
    // Needs enter when longer than --------------------------------
-   npc81115_dialogue.push( "Hey5" ); 
-   
-   // Needs enter when longer than --------------------------------
-   npc90113_dialogue.push( "Hey6" ); 
-   
-   // Needs enter when longer than --------------------------------
-   npc95108_dialogue.push( "Hey7" ); 
-   
-   // Needs enter when longer than --------------------------------
-   npc94122_dialogue.push( "Hey8" ); 
-   
-   // Needs enter when longer than --------------------------------
-   npc94122X_dialogue.push( "Hey9" ); 
+   npc94122X_dialogue.push( "I'm all out of milk, AHHHHH!!!!!" ); 
    
    // Needs enter when longer than --------------------------------
    npc87118_dialogue.push( "You look injured! Let me patch you\n" +
