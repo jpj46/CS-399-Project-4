@@ -354,6 +354,76 @@ function generateLevel()
 						attack: 6, 
 						speed: 5});
    
+   enemy27 = new Enemy({id: SKELETON,
+						num_charges: 6,
+						x: PLAYERMOVEAMOUNT * 78, 
+						y: PLAYERMOVEAMOUNT * 64,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 78, PLAYERMOVEAMOUNT * 64,
+                                          .8, .8, "Overworld_Skeleton", 1, 3 ),
+						name: "Skeleton", 
+						attack: 4, 
+						speed: 5});
+   
+   enemy28 = new Enemy({id: SKELETON,
+						num_charges: 6,
+						x: PLAYERMOVEAMOUNT * 81, 
+						y: PLAYERMOVEAMOUNT * 93,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 81, PLAYERMOVEAMOUNT * 93,
+                                          .8, .8, "Overworld_Skeleton", 1, 3 ),
+						name: "Skeleton", 
+						attack: 4, 
+						speed: 5});
+   
+   enemy29 = new Enemy({id: BAT,
+                        num_charges: 4,
+                        x: PLAYERMOVEAMOUNT * 64, 
+                        y: PLAYERMOVEAMOUNT * 83, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 64, PLAYERMOVEAMOUNT * 83,
+                                          1, 1, "Bat", 1, 3 ), 
+                        name: "Bat", 
+                        attack: 4, 
+                        speed: 8});
+   
+   enemy30 = new Enemy({id: BAT,
+                        num_charges: 4,
+                        x: PLAYERMOVEAMOUNT * 66, 
+                        y: PLAYERMOVEAMOUNT * 76, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 66, PLAYERMOVEAMOUNT * 76,
+                                          1, 1, "Bat", 1, 3 ), 
+                        name: "Bat", 
+                        attack: 4, 
+                        speed: 8});
+   
+   enemy31 = new Enemy({id: BAT,
+                        num_charges: 3,
+                        x: PLAYERMOVEAMOUNT * 59, 
+                        y: PLAYERMOVEAMOUNT * 61, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 59, PLAYERMOVEAMOUNT * 61,
+                                          1, 1, "Bat", 1, 3 ), 
+                        name: "Bat", 
+                        attack: 3, 
+                        speed: 2});
+   
+   enemy32 = new Enemy({id: BAT,
+                        num_charges: 4,
+                        x: PLAYERMOVEAMOUNT * 88, 
+                        y: PLAYERMOVEAMOUNT * 68, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 88, PLAYERMOVEAMOUNT * 68,
+                                          1, 1, "Bat", 1, 3 ), 
+                        name: "Bat", 
+                        attack: 4, 
+                        speed: 8});
+   
+   enemy33 = new Enemy({id: BAT,
+                        num_charges: 4,
+                        x: PLAYERMOVEAMOUNT * 79, 
+                        y: PLAYERMOVEAMOUNT * 78, 
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 79, PLAYERMOVEAMOUNT * 78,
+                                          1, 1, "Bat", 1, 3 ), 
+                        name: "Bat", 
+                        attack: 4, 
+                        speed: 8});
+   
    // ------------------------ CAVE ---------------------------------------- 
    
    
@@ -581,9 +651,6 @@ function generateLevel()
    enemies.push( enemy24 );
    enemies.push( enemy25 );
    enemies.push( enemy26 );
-
-   
-   /** For later enemies
    enemies.push( enemy27 );
    enemies.push( enemy28 );
    enemies.push( enemy29 );
@@ -591,6 +658,9 @@ function generateLevel()
    enemies.push( enemy31 );
    enemies.push( enemy32 );
    enemies.push( enemy33 );
+
+   
+   /** For later enemies
    enemies.push( enemy34 );
    enemies.push( enemy35 );
    enemies.push( enemy36 );
@@ -688,8 +758,6 @@ function generateLevel()
    game_stage.addChild( enemy24.state );
    game_stage.addChild( enemy25.state );
    game_stage.addChild( enemy26.state );
-   
-   /** For later enemies
    game_stage.addChild( enemy27.state );
    game_stage.addChild( enemy28.state );
    game_stage.addChild( enemy29.state );
@@ -697,6 +765,8 @@ function generateLevel()
    game_stage.addChild( enemy31.state );
    game_stage.addChild( enemy32.state );
    game_stage.addChild( enemy33.state );
+   
+   /** For later enemies
    game_stage.addChild( enemy34.state );
    game_stage.addChild( enemy35.state );
    game_stage.addChild( enemy36.state );
