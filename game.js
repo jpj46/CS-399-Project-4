@@ -1891,7 +1891,6 @@ function buildScreens() {
    
    // Declares interactable text functions
    gameStatsText.click = function(event) { statsScreen.visible = true;
-										   gameStatsText.interactive = true;
                                            playerAttackText.setText( "Attack: " + player.attack );
                                            currentHealthSprite = createSprite( 103, 437, 1, 1, "ex_meter" + 
                                                                   player.health + ".png" );
@@ -1910,7 +1909,8 @@ function buildScreens() {
                                            
    gameStartText.click = function(event) { startScreen.visible = false; 
                                            game_stage.visible = true;
-                                           gameStatsText.visible = true; }
+                                           gameStatsText.visible = true;
+										   gameStatsText.interactive = true; }
                                            
    gameInstructText.click = function(event) { instructScreen.visible = true;
                                               startScreen.visible = false; }
