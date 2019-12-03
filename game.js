@@ -43,14 +43,7 @@ var battle_y;
 var temp_x;
 var temp_y;
 var temp_direction;
-var player_health = 10;
-var player_attack = 99;
-var health_meter;
-var player_alive = true;
-var player_boost = false;
-var player_armor = 1;
-var player_max_armor = 1;
-var player_speed = 5;
+var boss_choices = false;
 var enemy;
 var danger_level;
 var current_enemy;
@@ -95,6 +88,7 @@ var npc94122_dialogue = [];
 var npc94122X_dialogue = [];
 var npc87118_dialogue = [];
 var hard_enemy_dialogue = [];
+var boss_enemy_dialogue = [];
 var npc40121_talked_to = false;
 var npc12112_talked_to = false;
 var npc174_talked_to = false;
@@ -141,6 +135,8 @@ const DKEY = 68;
 const SPACE = 32;
 const SHIFT = 16;
 const ENTER = 13;
+const EKEY = 69;
+const QKEY = 81;
 
 const FOREST = 1000;
 const DESERT = 1001;
@@ -174,13 +170,9 @@ function generateLevel()
 	player = new Player();
 	battleBackground = FOREST;
 	game_stage.addChild( player.state );
-   battleBackground = FOREST;
-
-	//player = createMovieClip( PLAYER_START_X, PLAYER_START_Y, 1, 1, "PlayerRight", 1, 3 );
-	//playerDirection = RIGHT;
-	//player_name = "Hero"; //Replace with user input
-   //player.anchor.x = .5;
-	//player.anchor.y = .5;
+	
+    battleBackground = FOREST;
+	
 	game_stage.addChild( player.state );
 
 	enemy = new Enemy({id: OGRE,
@@ -328,8 +320,8 @@ function generateLevel()
    enemy6 = new Enemy({id: SHADOW_KING,
 						num_charges: 8,
 						x: PLAYERMOVEAMOUNT * 96, 
-						y: PLAYERMOVEAMOUNT * 58,
-						state: createMovieClip( PLAYERMOVEAMOUNT * 96, PLAYERMOVEAMOUNT * 58,
+						y: ((PLAYERMOVEAMOUNT * 58) + 10),
+						state: createMovieClip( PLAYERMOVEAMOUNT * 96, ((PLAYERMOVEAMOUNT * 58) + 5),
                                           1, 1, "Overworld_Shadow_King", 1, 5 ), 
 						name: "Shadow King", 
 						attack: 1, 
@@ -338,7 +330,7 @@ function generateLevel()
    enemy7 = new Enemy({id: SEXY_HENCHMAN,
 						num_charges: 9,
 						x: PLAYERMOVEAMOUNT * 97, 
-						y: PLAYERMOVEAMOUNT * 56,
+						y: ((PLAYERMOVEAMOUNT * 56) - 10),
                   state: createMovieClip( PLAYERMOVEAMOUNT * 97, PLAYERMOVEAMOUNT * 56,
                                           1, 1, "Overworld_Sexy_Henchman", 1, 5 ), 
 						name: "Sexy Henchman", 
@@ -380,7 +372,7 @@ function generateLevel()
                         x: PLAYERMOVEAMOUNT * 64, 
                         y: PLAYERMOVEAMOUNT * 83, 
                   state: createMovieClip( PLAYERMOVEAMOUNT * 64, PLAYERMOVEAMOUNT * 83,
-                                          1, 1, "Bat", 1, 3 ), 
+                                          .6, .6, "Bat", 1, 3 ), 
                         name: "Bat", 
                         attack: 4, 
                         speed: 8});
@@ -390,7 +382,7 @@ function generateLevel()
                         x: PLAYERMOVEAMOUNT * 66, 
                         y: PLAYERMOVEAMOUNT * 76, 
                   state: createMovieClip( PLAYERMOVEAMOUNT * 66, PLAYERMOVEAMOUNT * 76,
-                                          1, 1, "Bat", 1, 3 ), 
+                                          .6, .6, "Bat", 1, 3 ), 
                         name: "Bat", 
                         attack: 4, 
                         speed: 8});
@@ -400,7 +392,7 @@ function generateLevel()
                         x: PLAYERMOVEAMOUNT * 59, 
                         y: PLAYERMOVEAMOUNT * 61, 
                   state: createMovieClip( PLAYERMOVEAMOUNT * 59, PLAYERMOVEAMOUNT * 61,
-                                          1, 1, "Bat", 1, 3 ), 
+                                          .6, .6, "Bat", 1, 3 ), 
                         name: "Bat", 
                         attack: 3, 
                         speed: 2});
@@ -410,7 +402,7 @@ function generateLevel()
                         x: PLAYERMOVEAMOUNT * 88, 
                         y: PLAYERMOVEAMOUNT * 68, 
                   state: createMovieClip( PLAYERMOVEAMOUNT * 88, PLAYERMOVEAMOUNT * 68,
-                                          1, 1, "Bat", 1, 3 ), 
+                                          .6, .6, "Bat", 1, 3 ), 
                         name: "Bat", 
                         attack: 4, 
                         speed: 8});
@@ -420,7 +412,7 @@ function generateLevel()
                         x: PLAYERMOVEAMOUNT * 79, 
                         y: PLAYERMOVEAMOUNT * 78, 
                   state: createMovieClip( PLAYERMOVEAMOUNT * 79, PLAYERMOVEAMOUNT * 78,
-                                          1, 1, "Bat", 1, 3 ), 
+                                          .6, .6, "Bat", 1, 3 ), 
                         name: "Bat", 
                         attack: 4, 
                         speed: 8});
@@ -865,7 +857,7 @@ function generateBattleMenu()
 		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_desert.png"));
 			break;
 		case SNOW:
-		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_snow.png"));
+		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_ice.png"));
 			break;
 		case CAVE:
 		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_cave.png"));
@@ -922,7 +914,7 @@ function generateBattleMenu()
 				current_enemy.state = createMovieClip( 250, 135, 1.25, 1.25, current_enemy.name, 1, 3 );
 				break;
 			case BAT:
-				enemy_text.position.x += 10;
+				enemy_text.position.x += 25;
 				current_enemy.state = createMovieClip( 225, 150, 2, 2, current_enemy.name, 1, 7 );
 				current_enemy.state.animationSpeed = 0.25;
 				break;
@@ -979,8 +971,7 @@ function generateBattleMenu()
 
 function update() 
 {
-   //document.getElementById('display').innerHTML = ("Attack: " + player.attack);
-	requestAnimationFrame( update );
+    requestAnimationFrame( update );
 	update_camera();
 	if ( battle_active ) { 
 		player.updateHealthBar();
@@ -1040,8 +1031,11 @@ function checkEnemyPlayerCollisions(){
 		var foe = enemies[i];
 		if(checkRectangleCollision(player.state, foe.state)){
 			foe.is_hit = true;
-			foe.state.visible = false;
-			game_stage.removeChild(foe);
+			
+			if ( foe.id != SEXY_HENCHMAN ) {
+				foe.state.visible = false;
+				game_stage.removeChild(foe);
+			}
 			return true;
 		}
 	}
@@ -1301,12 +1295,43 @@ function keydownEventHandler(event) {
             dialogue_active = true;
             dialogueEnd = false;
          }
+		 
+		 else if( currentNPC == 99999 && currentDialogue == 0 ) {
+			getCurrentLine();
+            
+            dialogueBox = createRoundedRect( 0, 400, 500, 100, 10, "white" );
+            dialogueText.setText(currentArray[currentDialogue]);
+            currentDialogue++;
+
+            master_stage.addChild( dialogueBox );
+            master_stage.addChild( dialogueText );
+
+            dialogue_active = true;
+            dialogueEnd = false;
+			
+		 }
+		 
+		 if ( event.keyCode == QKEY && boss_choices  ) {
+			alert("Game End, Great job killer");
+		 }
+		 
+		 if ( event.keyCode == EKEY && boss_choices  ) {
+			transform();
+		 }
          
          if ( event.keyCode == ENTER )
          {
             if( !dialogueEnd )
             {
-               iterateDialogue();
+               if ( currentNPC == 9999 ) {
+				   level++;
+				   
+				   if ( level >= 2 ) {
+					   boss_choices = true;
+				   }
+			   }
+			   
+			   iterateDialogue();
             }
          }
       }
@@ -1372,6 +1397,9 @@ function getCurrentLine()
       case 999999:
          currentArray = hard_enemy_dialogue;
          break;
+	  case 99999:
+		 currentArray = boss_enemy_dialogue;
+		 break;
       case 12112:
          if( !npc12112_talked_to )
          {
@@ -1424,8 +1452,6 @@ function getCurrentLine()
             currentArray = npc40121_dialogue;
             player.armor++;
             player.max_armor++;
-           // player_armor++;
-           // player_max_armor++;
             npc40121_talked_to = true;
          }
          
@@ -1442,8 +1468,6 @@ function getCurrentLine()
             currentArray = npc174_dialogue;
             player.armor++;
             player.max_armor++;
-           // player_armor++;
-           // player_max_armor++;
             npc174_talked_to = true;
          }
          
@@ -1460,8 +1484,6 @@ function getCurrentLine()
             currentArray = npc654_dialogue;
             player.armor++;
             player.max_armor++;
-           // player_armor++;
-           // player_max_armor++;
             npc654_talked_to = true;
          }
          
@@ -1519,7 +1541,11 @@ function iterateDialogue()
 {    
    if( currentDialogue == currentArray.length )
    {
-      dialogueEnd = true;
+	  if ( currentNPC == 99999 ) {
+		  transform();
+	  }
+	   
+	  dialogueEnd = true;
       dialogue_active = false;
       master_stage.removeChild( dialogueBox );
       master_stage.removeChild( dialogueText );
@@ -1696,6 +1722,11 @@ function initialize_npc_dialogue()
                            
    hard_enemy_dialogue.push( "You beat a tough enemy!" );
    hard_enemy_dialogue.push( "Your armor has increased!" );
+   
+   boss_enemy_dialogue.push("Derp");
+   boss_enemy_dialogue.push("Herp");
+   boss_enemy_dialogue.push("Derp or Herp");
+   boss_enemy_dialogue.push("Die then heathen!");
    
 }
 
@@ -2061,7 +2092,9 @@ function playerAttack( foe ) {
 				}
 				
 				else {
-					transform(this); //Move after dialogue
+					endBattle(this);
+					currentNPC = 99999;
+					dialogue_active = true;
 				}
 			}
 			
@@ -2185,7 +2218,9 @@ function endBattle ( foe ) {
 
 	moveHand(hand.position.x, menu_text.position.y + 
                            menu_text.height - 10);
-	mode = RUN;
+	while ( mode != RUN) {
+		menu.down();
+	}
 	count = 1;
 	clearBattleScreen();
 }
@@ -2269,9 +2304,9 @@ function swapPlayer ( x, y, scale_x, scale_y, image, low, high ) {
 	game_stage.addChild( player.state );
 }
 
-function transform ( enemy ) {
-	clearBattleScreen();
-			enemy.is_hit = false;
+function transform () {
+	//clearBattleScreen();
+			
 			for(var i in enemies){
 				var foe = enemies[i];
 				if(foe.id == DEMON_LEECH) {
@@ -2376,7 +2411,9 @@ Enemy.prototype.updateHealthBar = function () {
 		}
 		
 		else {
-			transform(this); //Move after dialogue
+			endBattle(this);
+			currentNPC = 99999;
+			dialogue_active = true;
 		}
 	}
 	
@@ -2500,12 +2537,12 @@ Player.prototype.updateHealthBar = function () {
 	if ( this.health > 10 ) { this.health = 10; }
 
 	if ( this.is_alive ) {
-		if ( this.id === DEMON_LEECH ) {
+		if ( current_enemy.id === DEMON_LEECH ) {
 			this.health_meter = createSprite( this.state.position.x - 40, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
 		}
 		
 		else {
-			this.health_meter = createSprite( this.state.position.x - 100, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
+			this.health_meter = createSprite( this.state.position.x - 105, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
 		}
 		battle_stage.addChild( this.health_meter );
 	}
