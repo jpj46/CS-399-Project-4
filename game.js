@@ -1028,13 +1028,16 @@ function checkEnemyPlayerCollisions(){
 	for(var i in enemies){
 		var foe = enemies[i];
 		if(checkRectangleCollision(player.state, foe.state)){
+			if ( foe.id != DEMON_LEECH ) {
 			foe.is_hit = true;
 			
 			if ( foe.id != SEXY_HENCHMAN ) {
 				foe.state.visible = false;
 				game_stage.removeChild(foe);
 			}
+			
 			return true;
+			}
 		}
 	}
 
@@ -2069,12 +2072,15 @@ function playerAttack( foe ) {
 		};
 		
 		foe.onComplete = animationFinished;*/
-
-		foe.health -= player.attack;
 		
+		var temp_attack = player.attack;
+
 		if( player.is_boosted ) {
 			player.health--;
+			temp_attack*=2;
 		}
+		
+		foe.health -= temp_attack;
 
 		if ( foe.health <= 0 ) { 
 			
@@ -2083,7 +2089,6 @@ function playerAttack( foe ) {
          {
 				if(foe.id != SEXY_HENCHMAN && foe.id != DEMON_LEECH ) {
 					foe.is_alive = false;
-					player.attack++;
 					var index = enemies.indexOf( foe );
 					if (index > -1) {
 						enemies.splice(index, 1);
@@ -2108,6 +2113,8 @@ function playerAttack( foe ) {
 					currentNPC = 99999;
 					dialogue_active = true;
 				}
+				
+			
 			}
 			
 			foe.loseCharge();
@@ -2157,7 +2164,6 @@ function skill( foe ) {
       if( !player.is_boosted ) 
       {
          player.is_boosted = true;
-         player.attack *= 2;
       }
 	
 		if ( player.is_alive && foe.is_alive ) 
@@ -2176,7 +2182,6 @@ function skill( foe ) {
 		if( !player.is_boosted ) 
       {
 			player.is_boosted = true;
-			player.attack *= 2;
 		}
   }
 }
@@ -2218,13 +2223,12 @@ function endBattle ( foe ) {
    if( player.is_boosted )
    {
       player.is_boosted = false;
-      player.attack /= 2;
       
    }
    
 	if( foe.health <= 0 )
    {
-      player.attack += 1;
+      player.attack++;
    }
    
 
@@ -2393,8 +2397,13 @@ function Enemy(obj) {
 */
 Enemy.prototype.updateHealthBar = function () {
     'use strict';
+	if ( this.health_meter != null ) {
+		battle_stage.removeChild( this.health_meter );
+		delete this.health_meter;
+	}
+	
 	if ( this.num_charges > 0 ) {
-		if ( this.health < 0 ) {
+		if ( this.health <= 0 ) {
 			while ( this.health < -10 ) {
 				this.num_charges--;
 				this.health += 10;
@@ -2407,7 +2416,7 @@ Enemy.prototype.updateHealthBar = function () {
 		if(this.id != SEXY_HENCHMAN && this.id != DEMON_LEECH ) {
 			
 			this.is_alive = false;
-			player.attack++;
+			
 			var index = enemies.indexOf( this );
 			if (index > -1) {
 				enemies.splice(index, 1);
@@ -2447,10 +2456,6 @@ Enemy.prototype.updateHealthBar = function () {
 			}
 				
 				threat_stage.addChild( danger_level );
-	}
-	
-    if ( this.health_meter != null ) {
-		battle_stage.removeChild( this.health_meter );
 	}
 
 	if ( this.health < 0 ) { this.health = 0; }
