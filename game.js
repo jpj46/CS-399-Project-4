@@ -15,6 +15,21 @@ PIXI.loader
   .add('assets/assets.json')
   .add('assets/map.json')
   .add('assets/tiles.png')
+  
+  .add('sound/Menu.mp3')
+  .add('sound/Run_away.mp3')
+  .add('sound/Player_attack.mp3')
+  .add('sound/potion.mp3')
+  .add('sound/dialogue.mp3')
+  .add('sound/PlayerWinsGame.mp3')
+  .add('sound/GameOver.mp3')
+  .add('sound/Powerup.mp3')
+  .add('sound/Shadow_King_Attack')
+  .add('sound/Shadow_King_Death')
+  .add('sound/Sexy_Minion_Attack')
+  .add('sound/Sexy_Minion_Death')
+  .add('sound/Final_Form_Attack')
+  .add('sound/Final_Form_Death')
   .load(generateLevel);
 
 var battle_stage = new PIXI.Container();
@@ -108,6 +123,21 @@ var currentHealthSprite;
 var currentArmorSprite;
 var battleBackground;
 
+var open_menu;
+var run_away;
+var attack;
+var potion;
+var dialogue;
+var game_win;
+var game_lose;
+var power_up;
+var shadow_king_start;
+var shadow_king_death;
+var sexy_minion_start;
+var sexy_minion_death;
+var final_form_start;
+var final_form_death;
+
 var dialogueText = new PIXI.Text('', 
                   {fontFamily : 'Calibri', fontSize: 25, fill : 0xFFFFFF, align : 'left'});
 dialogueText.x = 5;
@@ -168,6 +198,22 @@ function generateLevel()
 	player = new Player();
 	battleBackground = FOREST;
 	game_stage.addChild( player.state );
+	
+	// Create Sound Variables
+	open_menu = PIXI.audioManager.getAudio("Menu.mp3");
+	run_away = PIXI.audioManager.getAudio("Run_away.mp3");
+	attack = PIXI.audioManager.getAudio("Player_attack.mp3");
+	potion = PIXI.audioManager.getAudio("potion.mp3");
+	dialogue = PIXI.audioManager.getAudio("Dialogue.mp3");
+	game_win = PIXI.audioManager.getAudio("PlayerWinsGame.mp3");
+	game_lose = PIXI.audioManager.getAudio("GameOver.mp3");
+	power_up = PIXI.audioManager.getAudio("Powerup.mp3");
+	shadow_king_start = PIXI.audioManager.getAudio("Shadow_King_Attack.mp3");
+	shadow_king_death = PIXI.audioManager.getAudio("Shadow_King_Death.mp3");
+	sexy_minion_start = PIXI.audioManager.getAudio("Sexy_Minion_Attack.mp3");
+	sexy_minion_death = PIXI.audioManager.getAudio("Sexy_Minion_Death.mp3");
+	final_form_start = PIXI.audioManager.getAudio("Final_Form_Attack.mp3");
+	final_form_death = PIXI.audioManager.getAudio("Final_Form_Death.mp3");
 	
     battleBackground = FOREST;
 	
