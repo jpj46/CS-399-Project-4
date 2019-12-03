@@ -452,9 +452,9 @@ function generateLevel()
    
    enemy12 = new Enemy({id: PIXIE,
 						num_charges: 2,
-						x: PLAYERMOVEAMOUNT * 3, 
-						y: PLAYERMOVEAMOUNT * 109,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 3, PLAYERMOVEAMOUNT * 109,
+						x: PLAYERMOVEAMOUNT * 44, 
+						y: PLAYERMOVEAMOUNT * 31,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 44, PLAYERMOVEAMOUNT * 31,
                                           1, 1, "Overworld_Pixie", 1, 3 ), 
 						name: "Pixie", 
 						attack: 2, 
@@ -1723,17 +1723,17 @@ function initialize_npc_dialogue()
    hard_enemy_dialogue.push( "Your armor has increased!" );
    
    //                        ---------------------------------------
-   boss_enemy_dialogue.push("You... you ANIMAL! How could you hurt\n"+
-                            "me, I am IMMORTAL! I shouldn't be hurt\n"+
-                            "by such simple human tools...");
-   boss_enemy_dialogue.push("I have a proposal for you scum, join me\n"+
-                            "and rule this realm with me! We would be\n"+
-                            "invincible, unbeatable! And I'd be yours");
+   boss_enemy_dialogue.push("You... you ANIMAL! How could YOU \n"+
+                            "hurt me, I am IMMORTAL! I shouldn't \n"+
+                            "be hurt by such simple human tools...");
+   boss_enemy_dialogue.push("I have a proposal for you scum, join \n"+
+                            "me and rule this realm with me! We\n"+
+                            "would be invincible, unbeatable!");
    boss_enemy_dialogue.push("Accept or decline the demon's offer.\n"+
                             "Yes:  Press Q         No: Press E");
-   boss_enemy_dialogue.push("You would betray my GRACIOUS OFFER??\n"+
-                            "THEN DIE WITH THE REST OF THE HUMAN\n"+
-                            "SCUM!!! BEHOLD MY TRUE FORM!!! HAHAAH!!");
+   boss_enemy_dialogue.push("You betrayed my GRACIOUS OFFER??\n"+
+                            "THEN DIE WITH ALL OF THE HUMAN\n"+
+                            "SCUM!!! BEHOLD MY TRUE FORM!!!");
    
 }
 
