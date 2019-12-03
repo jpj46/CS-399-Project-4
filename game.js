@@ -2424,6 +2424,7 @@ Enemy.prototype.updateHealthBar = function () {
 		}
 		
 		else if ( current_enemy.id === DEMON_LEECH) {
+			endBattle(this);
 			gameWinScreen.visible = true;
 		}
 		
