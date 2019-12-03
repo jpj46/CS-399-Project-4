@@ -1523,6 +1523,8 @@ function getCurrentLine()
          break;
       case 87118:
          currentArray = npc87118_dialogue;
+         player.armor = player.max_armor;
+         player.health = 10;
          break;
    }
 }
