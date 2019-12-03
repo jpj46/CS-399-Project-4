@@ -2405,7 +2405,7 @@ Enemy.prototype.updateHealthBar = function () {
 	}
 	
 	if ( this.num_charges <= 0 || this.health == 0 ) {
-		if(this.id != SEXY_HENCHMAN ) {
+		if(this.id != SEXY_HENCHMAN && this.id != DEMON_LEECH ) {
 			
 			this.is_alive = false;
 			player.attack++;
@@ -2421,6 +2421,10 @@ Enemy.prototype.updateHealthBar = function () {
 				player.armor++;
 			}
 			
+		}
+		
+		else if ( current_enemy.id === DEMON_LEECH) {
+			gameWinScreen.visible = true;
 		}
 		
 		else {
