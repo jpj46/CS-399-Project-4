@@ -339,9 +339,9 @@ function generateLevel()
    
    enemy8 = new Enemy({id: DEMON_LEECH,
 						num_charges: 10,
-						x: PLAYERMOVEAMOUNT * 1000, 
-						y: PLAYERMOVEAMOUNT * 1000,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 1000, PLAYERMOVEAMOUNT * 1000,
+						x: PLAYERMOVEAMOUNT * 80, 
+						y: PLAYERMOVEAMOUNT * 80,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 80, PLAYERMOVEAMOUNT * 80,
                                           1, 1, "Demon Leech", 1, 3 ), 
 						name: "Demon Leech", 
 						attack: 6, 
@@ -731,8 +731,8 @@ function generateLevel()
 	game_stage.addChild( enemy4.state );
    game_stage.addChild( enemy5.state );
 	game_stage.addChild( enemy6.state );
-   game_stage.addChild( enemy7.state ); 
-   //game_stage.addChild( enemy8.state ); LEECH
+   game_stage.addChild( enemy7.state );
+   //game_stage.addChild( enemy8.state );
 	game_stage.addChild( enemy9.state );
    game_stage.addChild( enemy10.state );
    game_stage.addChild( enemy11.state );
@@ -2074,7 +2074,7 @@ function playerAttack( foe ) {
 			//alert("The enemy has been slain.");
 			if (foe.num_charges <= 1) 
          {
-				if(foe.id != SEXY_HENCHMAN ) {
+				if(foe.id != SEXY_HENCHMAN && foe.id != DEMON_LEECH ) {
 					foe.is_alive = false;
 					player.attack++;
 					var index = enemies.indexOf( foe );
@@ -2082,8 +2082,8 @@ function playerAttack( foe ) {
 						enemies.splice(index, 1);
 					}
 				
-					endBattle(this);
-					if ( this.id == OGRE || this.id == SKELETON || this.id == EVIL_TREE || this.id == EVIL_SNOWMAN ) {
+					endBattle(foe);
+					if ( foe.id == OGRE || foe.id == SKELETON || foe.id == EVIL_TREE || foe.id == EVIL_SNOWMAN ) {
 						
 						currentNPC = 999999;
 						dialogue_active = true;
@@ -2091,8 +2091,12 @@ function playerAttack( foe ) {
 					}
 				}
 				
+				else if ( foe.id == DEMON_LEECH) {
+					gameWinScreen.visible = true;
+				}
+				
 				else {
-					endBattle(this);
+					endBattle(foe);
 					currentNPC = 99999;
 					dialogue_active = true;
 				}
