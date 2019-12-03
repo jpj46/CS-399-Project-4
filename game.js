@@ -122,8 +122,8 @@ dialogueText.y = 405;
 const PLAYERMOVEAMOUNT = 25;
 //const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 //const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 25;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 4;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 40;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 93;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -173,6 +173,7 @@ function generateLevel()
     npcArray = world.getObject("NPC").data;
 	player = new Player();
 	game_stage.addChild( player.state );
+   battleBackground = FOREST;
 
 	//player = createMovieClip( PLAYER_START_X, PLAYER_START_Y, 1, 1, "PlayerRight", 1, 3 );
 	//playerDirection = RIGHT;
@@ -240,6 +241,42 @@ function generateLevel()
 						attack: 4, 
 						speed: 5});*/
                   
+   /** Snow enemies     					
+	enemy3 = new Enemy({id: EVIL_SNOWMAN,
+						num_charges: 7,
+						x: PLAYERMOVEAMOUNT * 18, 
+						y: PLAYERMOVEAMOUNT * 4,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 18, PLAYERMOVEAMOUNT * 4,
+                                          1, 1, "Overworld_Evil_Snowman", 1, 3 ), 
+						name: "Evil Snowman", 
+						attack: 4, 
+						speed: 3}); //changed for testing purposes
+						
+          
+   enemy4 = new Enemy({id: ICE_WRAITH,
+						num_charges: 5,
+						x: PLAYERMOVEAMOUNT * 16, 
+						y: PLAYERMOVEAMOUNT * 40,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 16, PLAYERMOVEAMOUNT * 40,
+                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
+						name: "Ice Wraith", 
+						attack: 3, 
+						speed: 8}); //changed for testing purposes
+   
+   enemy5 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 8, 
+						y: PLAYERMOVEAMOUNT * 27,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 8, PLAYERMOVEAMOUNT * 27,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6}); //changed for testing purposes */
+                  
+                  
+   
+   // ------------------------ FOREST ---------------------------------------- 
+                  
 	enemy2 = new Enemy({id: EVIL_TREE,
 						num_charges: 5,
 						x: PLAYERMOVEAMOUNT * 36, 
@@ -280,37 +317,12 @@ function generateLevel()
 						name: "Goblin", 
 						attack: 3, 
 						speed: 2}); //changed for testing purposes 
-	   /** Snow enemies     					
-	enemy3 = new Enemy({id: EVIL_SNOWMAN,
-						num_charges: 7,
-						x: PLAYERMOVEAMOUNT * 18, 
-						y: PLAYERMOVEAMOUNT * 4,
-						state: createMovieClip( PLAYERMOVEAMOUNT * 18, PLAYERMOVEAMOUNT * 4,
-                                          1, 1, "Overworld_Evil_Snowman", 1, 3 ), 
-						name: "Evil Snowman", 
-						attack: 4, 
-						speed: 3}); //changed for testing purposes
-						
-          
-   enemy4 = new Enemy({id: ICE_WRAITH,
-						num_charges: 5,
-						x: PLAYERMOVEAMOUNT * 16, 
-						y: PLAYERMOVEAMOUNT * 40,
-						state: createMovieClip( PLAYERMOVEAMOUNT * 16, PLAYERMOVEAMOUNT * 40,
-                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
-						name: "Ice Wraith", 
-						attack: 3, 
-						speed: 8}); //changed for testing purposes
+	
    
-   enemy5 = new Enemy({id: SNOW_DEVIL,
-						num_charges: 3,
-						x: PLAYERMOVEAMOUNT * 8, 
-						y: PLAYERMOVEAMOUNT * 27,
-						state: createMovieClip( PLAYERMOVEAMOUNT * 8, PLAYERMOVEAMOUNT * 27,
-                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
-						name: "Snow Devil", 
-						attack: 3, 
-						speed: 6}); //changed for testing purposes */
+   // ------------------------ FOREST ---------------------------------------- 
+   
+   
+   // ------------------------ CAVE ---------------------------------------- 
    
    enemy6 = new Enemy({id: SHADOW_KING,
 						num_charges: 8,
@@ -341,6 +353,11 @@ function generateLevel()
 						name: "Demon Leech", 
 						attack: 6, 
 						speed: 5});
+   
+   // ------------------------ CAVE ---------------------------------------- 
+   
+   
+   // ------------------------ FOREST ---------------------------------------- 
    
    enemy9 = new Enemy({id: PIXIE,
 						num_charges: 2,
@@ -382,15 +399,11 @@ function generateLevel()
 						attack: 2, 
 						speed: 8});
                   
-   enemy13 = new Enemy({id: BAT,
-						num_charges: 2,
-						x: PLAYERMOVEAMOUNT * 43, 
-						y: PLAYERMOVEAMOUNT * 57,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 43, PLAYERMOVEAMOUNT * 57,
-                                          1, 1, "Bat", 1, 3 ), 
-						name: "Bat", 
-						attack: 2, 
-						speed: 8});
+   // ------------------------ FOREST ----------------------------------------
+   
+               
+                  
+   // ------------------------ DESERT ----------------------------------------               
                   
    enemy14 = new Enemy({id: POSSESSED_SOLDIER,
 						num_charges: 4,
@@ -441,6 +454,105 @@ function generateLevel()
 						name: "Soldier", 
 						attack: 2, 
 						speed: 7});
+                  
+   // ------------------------ DESERT ----------------------------------------
+   
+   
+   
+   // ------------------------ ICE ----------------------------------------
+   enemy19 = new Enemy({id: ICE_WRAITH,
+						num_charges: 5,
+						x: PLAYERMOVEAMOUNT * 10, 
+						y: PLAYERMOVEAMOUNT * 87,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 10, PLAYERMOVEAMOUNT * 87,
+                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
+						name: "Ice Wraith", 
+						attack: 3, 
+						speed: 8});
+   
+   enemy20 = new Enemy({id: ICE_WRAITH,
+						num_charges: 5,
+						x: PLAYERMOVEAMOUNT * 7, 
+						y: PLAYERMOVEAMOUNT * 65,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 7, PLAYERMOVEAMOUNT * 65,
+                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
+						name: "Ice Wraith", 
+						attack: 3, 
+						speed: 8});
+   
+   enemy21 = new Enemy({id: ICE_WRAITH,
+						num_charges: 5,
+						x: PLAYERMOVEAMOUNT * 39, 
+						y: PLAYERMOVEAMOUNT * 88,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 39, PLAYERMOVEAMOUNT * 88,
+                                          .5, .5, "Overworld_Ice_Wraith", 1, 3 ), 
+						name: "Ice Wraith", 
+						attack: 3, 
+						speed: 8});
+   
+   enemy22 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 16, 
+						y: PLAYERMOVEAMOUNT * 90,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 16, PLAYERMOVEAMOUNT * 90,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6});
+   
+   enemy23 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 20, 
+						y: PLAYERMOVEAMOUNT * 69,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 20, PLAYERMOVEAMOUNT * 69,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6});
+   
+   enemy24 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 29, 
+						y: PLAYERMOVEAMOUNT * 78,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 29, PLAYERMOVEAMOUNT * 78,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6});
+   
+   enemy25 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 24, 
+						y: PLAYERMOVEAMOUNT * 74,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 24, PLAYERMOVEAMOUNT * 74,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6});
+   
+   enemy26 = new Enemy({id: SNOW_DEVIL,
+						num_charges: 3,
+						x: PLAYERMOVEAMOUNT * 34, 
+						y: PLAYERMOVEAMOUNT * 63,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 34, PLAYERMOVEAMOUNT * 63,
+                                          1, 1, "Overworld_Snow_Devil", 1, 3 ),  
+						name: "Snow Devil", 
+						attack: 3, 
+						speed: 6});
+    
+   enemy13 = new Enemy({id: EVIL_SNOWMAN,
+						num_charges: 7,
+						x: PLAYERMOVEAMOUNT * 43, 
+						y: PLAYERMOVEAMOUNT * 57,
+						state: createMovieClip( PLAYERMOVEAMOUNT * 43, PLAYERMOVEAMOUNT * 57,
+                                          1, 1, "Overworld_Evil_Snowman", 1, 3 ), 
+						name: "Evil Snowman", 
+						attack: 4, 
+						speed: 3});
+   // ------------------------ ICE ----------------------------------------
+   
+   
+   
    
 		
 	enemies.push( enemy );
@@ -461,9 +573,6 @@ function generateLevel()
    enemies.push( enemy16 );
    enemies.push( enemy17 );
    enemies.push( enemy18 );
-
-   
-   /** For later enemies
    enemies.push( enemy19 );
    enemies.push( enemy20 );
    enemies.push( enemy21 );
@@ -472,6 +581,9 @@ function generateLevel()
    enemies.push( enemy24 );
    enemies.push( enemy25 );
    enemies.push( enemy26 );
+
+   
+   /** For later enemies
    enemies.push( enemy27 );
    enemies.push( enemy28 );
    enemies.push( enemy29 );
@@ -568,8 +680,6 @@ function generateLevel()
    game_stage.addChild( enemy16.state );
    game_stage.addChild( enemy17.state );
    game_stage.addChild( enemy18.state );
-   
-   /** For later enemies
    game_stage.addChild( enemy19.state );
    game_stage.addChild( enemy20.state );
    game_stage.addChild( enemy21.state );
@@ -578,6 +688,8 @@ function generateLevel()
    game_stage.addChild( enemy24.state );
    game_stage.addChild( enemy25.state );
    game_stage.addChild( enemy26.state );
+   
+   /** For later enemies
    game_stage.addChild( enemy27.state );
    game_stage.addChild( enemy28.state );
    game_stage.addChild( enemy29.state );
