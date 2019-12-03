@@ -339,9 +339,9 @@ function generateLevel()
    
    enemy8 = new Enemy({id: DEMON_LEECH,
 						num_charges: 10,
-						x: PLAYERMOVEAMOUNT * 80, 
-						y: PLAYERMOVEAMOUNT * 80,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 80, PLAYERMOVEAMOUNT * 80,
+						x: PLAYERMOVEAMOUNT * 1000, 
+						y: PLAYERMOVEAMOUNT * 1000,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 1000, PLAYERMOVEAMOUNT * 1000,
                                           1, 1, "Demon Leech", 1, 3 ), 
 						name: "Demon Leech", 
 						attack: 6, 
@@ -731,8 +731,8 @@ function generateLevel()
 	game_stage.addChild( enemy4.state );
    game_stage.addChild( enemy5.state );
 	game_stage.addChild( enemy6.state );
-   game_stage.addChild( enemy7.state );
-   //game_stage.addChild( enemy8.state );
+   game_stage.addChild( enemy7.state ); 
+   //game_stage.addChild( enemy8.state ); LEECH
 	game_stage.addChild( enemy9.state );
    game_stage.addChild( enemy10.state );
    game_stage.addChild( enemy11.state );
