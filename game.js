@@ -2231,7 +2231,8 @@ function endBattle ( foe ) {
    
 	if( foe.health <= 0 )
    {
-      player.attack++;
+      if( foe.id === GOBLIN || foe.id === POSSESSED_SOLDIER || foe.id === SNOW_DEVIL ) { player.attack++; }
+	  if( foe.id === PIXIE || foe.id === ICE_WRAITH || foe.id === BAT ) { player.speed++; }
    }
    
 
