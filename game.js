@@ -147,7 +147,7 @@ const PLAYERMOVEAMOUNT = 25;
 const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
 const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
 const FIGHT = 100;
-const STEAL = 200;
+const SKILL = 200;
 const ITEM = 300;
 const RUN = 400;
 
@@ -915,7 +915,7 @@ function generateBattleMenu()
          delete menu_text;
       }
 
-      menu_text = new PIXI.extras.BitmapText("fight\nskill\nitem\nrun", {font: "16px gamefont"});
+      menu_text = new PIXI.extras.BitmapText("fight\nskill\nheal\nrun", {font: "16px gamefont"});
       menu_text.position.x = 105;
       menu_text.position.y = 250;
 	  battle_text_stage.addChild( menu_text );
@@ -979,14 +979,17 @@ function generateBattleMenu()
 				current_enemy.state = createMovieClip( 250, 125, 2, 2, current_enemy.name, 1, 3 );
 				break;
 			case SHADOW_KING:
+			    //Shadow_King_Attack.play();
 				enemy_text.position.x -= 50;
 				current_enemy.state = createMovieClip( 225, 10, 2, 2, current_enemy.name, 1, 5 );
 				break;
 			case SEXY_HENCHMAN:
+				//Sexy_Minion_Attack.play();
 				enemy_text.position.x -= 75;
 				current_enemy.state = createMovieClip( 250, 150, 1, 1, current_enemy.name, 1, 5 );
 				break;
 			case DEMON_LEECH:
+			    //Final_Form_Attack.play();
 				enemy_text.position.x -= 50;
 				player.state.position.x -= 60;
 				current_enemy.state = createMovieClip( 150, -10, 1.5, 1.5, current_enemy.name, 1, 5 );
@@ -1118,7 +1121,7 @@ var menu = StateMachine.create({
                            menu_text.height - 70); mode = FIGHT;},
     //onmagic: function() { moveHand(hand.position.x, player.position.y - 105); mode = 2; },
     onskill: function() { moveHand(hand.position.x, menu_text.position.y + 
-                           menu_text.height - 50); mode = skill;},
+                           menu_text.height - 50); mode = SKILL;},
     onitem: function() { moveHand(hand.position.x, menu_text.position.y + 
                            menu_text.height - 30); mode = ITEM;},
     onrun: function() { moveHand(hand.position.x, menu_text.position.y + 
@@ -2085,6 +2088,7 @@ function checkTarget(){
 }
 
 function fight( foe ) { //Pass in enemy
+  //attack.play();
   if( player.speed > foe.speed ) {
 	playerAttack( foe );
 	
@@ -2156,12 +2160,14 @@ function playerAttack( foe ) {
 				}
 				
 				else if ( foe.id == DEMON_LEECH) {
+					//Final_Form_Death.play();
 					endBattle(foe);
 					gameWinScreen.visible = true;
                //game_win.play();
 				}
 				
 				else {
+					//Sexy_Minion_Death.play();
 					endBattle(foe);
 					currentNPC = 99999;
 					dialogue_active = true;
@@ -2213,6 +2219,7 @@ function enemyAttack( foe ) {
 	Helper function that handles skill action in combat
 */
 function skill( foe ) {
+	//power_up.play();
 	if( player.speed > foe.speed ) 
    {
       if( !player.is_boosted ) 
@@ -2245,6 +2252,7 @@ function skill( foe ) {
 */
 function useItem( foe ) {
 	//alert("You drink a health potion.");
+	//potion.play();
 	player.health += getRand(3) + 2; //30% - 50%
 	enemyAttack( foe );
 }
@@ -2253,6 +2261,7 @@ function useItem( foe ) {
 	Helper function that handles run action in combat
 */
 function run( foe ) {
+	//run_away.play();
 	if ( foe.id != DEMON_LEECH && foe.id != SEXY_HENCHMAN && foe.id != SHADOW_KING && foe.id != EVIL_TREE && foe.id != EVIL_SNOWMAN ) { endBattle( foe ); }
 	else { gameLoseScreen.visible = true; //game_lose.play(); 
    }
@@ -2479,12 +2488,14 @@ Enemy.prototype.updateHealthBar = function () {
 		}
 		
 		else if ( current_enemy.id === DEMON_LEECH) {
+			//Final_Form_Death.play();
 			endBattle(this);
 			gameWinScreen.visible = true;
          //game_win.play();
 		}
 		
 		else {
+			//Sexy_Minion_Death.play();
 			endBattle(this);
 			currentNPC = 99999;
 			boss_choices = true;
