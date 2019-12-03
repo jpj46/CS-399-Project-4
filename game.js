@@ -322,7 +322,7 @@ function generateLevel()
 						state: createMovieClip( PLAYERMOVEAMOUNT * 96, ((PLAYERMOVEAMOUNT * 58) + 5),
                                           1, 1, "Overworld_Shadow_King", 1, 5 ), 
 						name: "Shadow King", 
-						attack: 1, 
+						attack: 4, 
 						speed: 6});
                   
    enemy7 = new Enemy({id: SEXY_HENCHMAN,
