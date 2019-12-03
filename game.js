@@ -114,10 +114,8 @@ dialogueText.x = 5;
 dialogueText.y = 405;
 
 const PLAYERMOVEAMOUNT = 25;
-//const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
-//const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 95;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 110;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -1845,7 +1843,7 @@ function buildScreens() {
    var playerAttackText = new PIXI.Text( "Attack:" , {fill : 0xFFFFFF} );
    var playerHealthText = new PIXI.Text( "Health:", {fill : 0xFFFFFF} );
    var playerArmorText = new PIXI.Text( "Armor:", {fill : 0xFFFFFF} );
-   var gameTitleText = new PIXI.Text( "RPG!", {fill : 0xFFFFFF} );
+   var gameTitleText = new PIXI.Text( "Shadow Hero", {fill : 0xFFFFFF} );
    var gameInstructTitleText = new PIXI.Text( "Instructions", {fill : 0xFFFFFF} );
    var gameCreditTitleText = new PIXI.Text( "Credits", {fill : 0xFFFFFF} );
    var gameWinText = new PIXI.Text( "Game over!\nYou win!", {fill : 0xFFFFFF, align: 'center'} );
@@ -2495,7 +2493,7 @@ function Player(obj) {
 		this.text.position.x = 10;
 		this.text.position.y = 250;
 		this.health = 10;
-		this.attack = 99;
+		this.attack = 1;
 		this.health_meter;
 		this.is_alive = true;
 		this.is_boosted = false;
