@@ -1312,25 +1312,15 @@ function keydownEventHandler(event) {
 		 }
 		 
 		 if ( event.keyCode == QKEY && boss_choices  ) {
-			alert("Game End, Great job killer");
-		 }
-		 
-		 if ( event.keyCode == EKEY && boss_choices  ) {
-			transform();
+			master_stage.removeChild( dialogueBox );
+			master_stage.removeChild( dialogueText );
+			gameWinScreen.visible = true;
 		 }
          
-         if ( event.keyCode == ENTER )
+         if ( event.keyCode == ENTER || ( event.keyCode == EKEY && boss_choices ) )
          {
             if( !dialogueEnd )
-            {
-               if ( currentNPC == 9999 ) {
-				   level++;
-				   
-				   if ( level >= 2 ) {
-					   boss_choices = true;
-				   }
-			   }
-			   
+            {  
 			   iterateDialogue();
             }
          }
