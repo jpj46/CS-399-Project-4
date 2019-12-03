@@ -2118,7 +2118,7 @@ function playerAttack( foe ) {
 				
 			
 			}
-			
+			foe.health = 10;
 			foe.loseCharge();
 			
 		}
