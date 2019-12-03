@@ -172,6 +172,7 @@ function generateLevel()
     teleportArray = world.getObject("Teleport").data;
     npcArray = world.getObject("NPC").data;
 	player = new Player();
+	battleBackground = FOREST;
 	game_stage.addChild( player.state );
 
 	//player = createMovieClip( PLAYER_START_X, PLAYER_START_Y, 1, 1, "PlayerRight", 1, 3 );
@@ -257,8 +258,8 @@ function generateLevel()
 						state: createMovieClip( PLAYERMOVEAMOUNT * 18, PLAYERMOVEAMOUNT * 4,
                                           1, 1, "Overworld_Ogre", 1, 2 ), 
 						name: "Ogre", 
-						attack: 1, 
-						speed: 6}); //changed for testing purposes
+						attack: 3, 
+						speed: 2}); //changed for testing purposes
 						
                   
    enemy4 = new Enemy({id: GOBLIN,
@@ -674,7 +675,21 @@ function generateBattleMenu()
       battle_text_stage.scale.y = 1.5;
       mode = RUN;
 	  
-	  battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_cave.png"));
+	  switch ( battleBackground ) {
+		case FOREST:
+			battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_forest.png"));
+			break;
+		case DESERT:
+		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_desert.png"));
+			break;
+		case SNOW:
+		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_snow.png"));
+			break;
+		case CAVE:
+		    battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_cave.png"));
+			break;
+	  }
+	  
 	  battle_stage.addChild( battle_screen );
       
       if ( menu_text != null ) 
@@ -1891,14 +1906,14 @@ function enemyAttack( foe ) {
 		}
 
 		if ( player.health <= 0 ) {
-			alert("You have fallen in battle. ;-;");
+			//alert("You have fallen in battle. ;-;");
 			if ( player.armor <= 1 ) {
 				game_stage.removeChild( player.state );
 				player.state.stop();
 				player.is_alive = false;
 				endBattle( foe );
             
-            gameLoseScreen.visible = true;
+				gameLoseScreen.visible = true;
 			}
 			
          player.armor--;
@@ -2287,9 +2302,15 @@ Player.prototype.updateHealthBar = function () {
 	player_threat_stage.removeChildren();
 	
 	for ( var i = this.armor; i > 0; i-- ) {
-				danger_level = createSprite( (i*25) - 25, this.state.position.y + 210, 1.5, 1.5, "armor.png");
-				
-				player_threat_stage.addChild( danger_level );
+		if ( i > 5 ) {
+			danger_level = createSprite( (i*25) - 150, this.state.position.y + 240, 1.5, 1.5, "armor.png");
+		}	
+		
+		else {
+			danger_level = createSprite( (i*25) - 25, this.state.position.y + 210, 1.5, 1.5, "armor.png");
+		}
+		
+		player_threat_stage.addChild( danger_level );
 	}
 	
 	if ( this.health < 0 ) { this.health = 0; }
@@ -2297,7 +2318,7 @@ Player.prototype.updateHealthBar = function () {
 	if ( this.health > 10 ) { this.health = 10; }
 
 	if ( this.is_alive ) {
-		if ( current_enemy.id === DEMON_LEECH ) {
+		if ( this.id === DEMON_LEECH ) {
 			this.health_meter = createSprite( this.state.position.x - 40, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
 		}
 		
@@ -2306,12 +2327,4 @@ Player.prototype.updateHealthBar = function () {
 		}
 		battle_stage.addChild( this.health_meter );
 	}
-};
-
-Player.prototype.addArmor = function () {
-	this.armor++;
-};
-
-Player.prototype.loseCharge = function () {
-	this.armor--;
 };
