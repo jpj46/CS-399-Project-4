@@ -2436,6 +2436,7 @@ Enemy.prototype.updateHealthBar = function () {
 		else {
 			endBattle(this);
 			currentNPC = 99999;
+			boss_choices = true;
 			dialogue_active = true;
 		}
 	}
