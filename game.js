@@ -2102,6 +2102,7 @@ function playerAttack( foe ) {
 						currentNPC = 999999;
 						dialogue_active = true;
 						player.armor++;
+						player.max_armor++;
 					}
 				}
 				
