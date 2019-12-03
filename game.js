@@ -114,10 +114,8 @@ dialogueText.x = 5;
 dialogueText.y = 405;
 
 const PLAYERMOVEAMOUNT = 25;
-//const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
-//const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
-const PLAYER_START_X = PLAYERMOVEAMOUNT * 60;
-const PLAYER_START_Y = PLAYERMOVEAMOUNT * 60;
+const PLAYER_START_X = PLAYERMOVEAMOUNT * 2;
+const PLAYER_START_Y = PLAYERMOVEAMOUNT * 106;
 const FIGHT = 100;
 const STEAL = 200;
 const ITEM = 300;
@@ -454,9 +452,9 @@ function generateLevel()
    
    enemy12 = new Enemy({id: PIXIE,
 						num_charges: 2,
-						x: PLAYERMOVEAMOUNT * 3, 
-						y: PLAYERMOVEAMOUNT * 109,
-                  state: createMovieClip( PLAYERMOVEAMOUNT * 3, PLAYERMOVEAMOUNT * 109,
+						x: PLAYERMOVEAMOUNT * 44, 
+						y: PLAYERMOVEAMOUNT * 31,
+                  state: createMovieClip( PLAYERMOVEAMOUNT * 44, PLAYERMOVEAMOUNT * 31,
                                           1, 1, "Overworld_Pixie", 1, 3 ), 
 						name: "Pixie", 
 						attack: 2, 
@@ -2494,7 +2492,7 @@ function Player(obj) {
 		this.text.position.x = 10;
 		this.text.position.y = 250;
 		this.health = 10;
-		this.attack = 99;
+		this.attack = 1;
 		this.health_meter;
 		this.is_alive = true;
 		this.is_boosted = false;
