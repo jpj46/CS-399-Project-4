@@ -1289,6 +1289,7 @@ function keydownEventHandler(event) {
          {
             if( checkNPCInteraction() )
             {
+               //dialogue.play();
                dialogueBox = createRoundedRect( 0, 400, 500, 100, 10, "white" );
                dialogueText.setText(currentArray[currentDialogue]);
                currentDialogue++;
@@ -1368,7 +1369,7 @@ function keydownEventHandler(event) {
          {
             if( !dialogueEnd )
             {  
-			   iterateDialogue();
+               iterateDialogue();
             }
          }
       }
@@ -1577,7 +1578,8 @@ function getCurrentLine()
 
 
 function iterateDialogue()
-{    
+{  
+   //dialogue.play();
    if( currentDialogue == currentArray.length )
    {
 	  if ( currentNPC == 99999 ) {
@@ -1945,7 +1947,7 @@ function buildScreens() {
                                            currentArmorSprite = createSprite( 103, 470, 1, 1, "armor" + 
                                                                   player.armor + ".png" );
                                            statsScreen.addChild( currentArmorSprite );
-                                           
+                                           //open_menu.play();
                                            }
    
    gameStatsBackText.click = function(event) { statsScreen.visible = false; 
@@ -2156,6 +2158,7 @@ function playerAttack( foe ) {
 				else if ( foe.id == DEMON_LEECH) {
 					endBattle(foe);
 					gameWinScreen.visible = true;
+               //game_win.play();
 				}
 				
 				else {
@@ -2198,6 +2201,7 @@ function enemyAttack( foe ) {
 				endBattle( foe );
             
 				gameLoseScreen.visible = true;
+            //game_lose.play();
 			}
 			
          player.armor--;
@@ -2250,7 +2254,8 @@ function useItem( foe ) {
 */
 function run( foe ) {
 	if ( foe.id != DEMON_LEECH && foe.id != SEXY_HENCHMAN && foe.id != SHADOW_KING && foe.id != EVIL_TREE && foe.id != EVIL_SNOWMAN ) { endBattle( foe ); }
-	else { gameLoseScreen.visible = true; }
+	else { gameLoseScreen.visible = true; //game_lose.play(); 
+   }
 }
 
 
@@ -2476,6 +2481,7 @@ Enemy.prototype.updateHealthBar = function () {
 		else if ( current_enemy.id === DEMON_LEECH) {
 			endBattle(this);
 			gameWinScreen.visible = true;
+         //game_win.play();
 		}
 		
 		else {
