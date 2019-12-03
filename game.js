@@ -893,6 +893,10 @@ function generateBattleMenu()
       battle_text_stage.scale.y = 1.5;
       mode = RUN;
 	  
+	  statsScreen.visible = false; 
+      statsScreen.removeChild( currentHealthSprite );
+      statsScreen.removeChild( currentArmorSprite );
+	  
 	  switch ( battleBackground ) {
 		case FOREST:
 			battle_screen = new PIXI.Sprite(PIXI.Texture.fromImage("battle_menu_forest.png"));
@@ -2150,7 +2154,7 @@ function playerAttack( foe ) {
 					}
 				
 					endBattle(foe);
-					if ( foe.id == OGRE || foe.id == SKELETON || foe.id == EVIL_TREE || foe.id == EVIL_SNOWMAN ) {
+					if ( foe.id == OGRE || foe.id == SKELETON || foe.id == EVIL_TREE ) {
 						
 						currentNPC = 999999;
 						dialogue_active = true;
@@ -2283,7 +2287,7 @@ function endBattle ( foe ) {
    
 	if( foe.health <= 0 )
    {
-      if( foe.id === GOBLIN || foe.id === POSSESSED_SOLDIER || foe.id === SNOW_DEVIL ) { player.attack++; }
+      if( foe.id === GOBLIN || foe.id === POSSESSED_SOLDIER || foe.id === SNOW_DEVIL || foe.id === EVIL_SNOWMAN ) { player.attack++; }
 	  if( foe.id === PIXIE || foe.id === ICE_WRAITH || foe.id === BAT ) { player.speed++; }
    }
    
