@@ -2203,17 +2203,8 @@ function useItem( foe ) {
 	Helper function that handles run action in combat
 */
 function run( foe ) {
-	var run_chance = getRand(10);
-	
-	if ( run_chance == 10 ) { //10% chance to fail
-		//alert("Couldn't get away.");
-		enemyAttack( foe ); // run fail
-	}
-
-	else {
-        //alert("You have escaped.");
-		endBattle( foe ); // run success
-	}
+	if ( foe.id != DEMON_LEECH && foe.id != SEXY_HENCHMAN && foe.id != SHADOW_KING && foe.id != EVIL_TREE && foe.id != EVIL_SNOWMAN ) { endBattle( foe ); }
+	else { gameLoseScreen.visible = true; }
 }
 
 
