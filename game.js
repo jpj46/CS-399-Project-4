@@ -2173,6 +2173,7 @@ function playerAttack( foe ) {
 				else {
 					//Sexy_Minion_Death.play();
 					endBattle(foe);
+					boss_choices = true;
 					currentNPC = 99999;
 					dialogue_active = true;
 				}
@@ -2266,10 +2267,9 @@ function useItem( foe ) {
 */
 function run( foe ) {
 	//run_away.play();
-	if ( foe.id != DEMON_LEECH && foe.id != SEXY_HENCHMAN && foe.id != SHADOW_KING && foe.id != EVIL_TREE && foe.id != EVIL_SNOWMAN ) { endBattle( foe ); }
-	
-	else { endBattle(foe);
-	gameLoseScreen.visible = true; //game_lose.play(); 
+	endBattle( foe );
+	if ( foe.id == DEMON_LEECH || foe.id == SEXY_HENCHMAN || foe.id == SHADOW_KING || foe.id == EVIL_TREE || foe.id == EVIL_SNOWMAN ) { gameLoseScreen.visible = true; }
+		//game_lose.play(); 
    }
 }
 
