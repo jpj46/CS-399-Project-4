@@ -2267,7 +2267,9 @@ function useItem( foe ) {
 function run( foe ) {
 	//run_away.play();
 	if ( foe.id != DEMON_LEECH && foe.id != SEXY_HENCHMAN && foe.id != SHADOW_KING && foe.id != EVIL_TREE && foe.id != EVIL_SNOWMAN ) { endBattle( foe ); }
-	else { gameLoseScreen.visible = true; //game_lose.play(); 
+	
+	else { endBattle(foe);
+	gameLoseScreen.visible = true; //game_lose.play(); 
    }
 }
 
