@@ -215,8 +215,6 @@ function generateLevel()
 	final_form_start = PIXI.audioManager.getAudio("Final_Form_Attack.mp3");
 	final_form_death = PIXI.audioManager.getAudio("Final_Form_Death.mp3");
 	
-    battleBackground = FOREST;
-	
 	game_stage.addChild( player.state );
 
 	enemy = new Enemy({id: OGRE,
@@ -2270,7 +2268,6 @@ function run( foe ) {
 	endBattle( foe );
 	if ( foe.id == DEMON_LEECH || foe.id == SEXY_HENCHMAN || foe.id == SHADOW_KING || foe.id == EVIL_TREE || foe.id == EVIL_SNOWMAN ) { gameLoseScreen.visible = true; }
 		//game_lose.play(); 
-   }
 }
 
 
