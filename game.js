@@ -1849,7 +1849,7 @@ function teleportPlayer( teleportIndex )
          player.state.position.y = PLAYERMOVEAMOUNT * 5;
          swapPlayer( player.state.position.x, player.state.position.y, 1, 1, "PlayerDown", 1, 3  );
          player.direction = DOWN;
-         battleBackground = FOREST;
+         battleBackground = DESERT;
          break;
       
       case 10698:
