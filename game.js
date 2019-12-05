@@ -942,6 +942,8 @@ function generateBattleMenu()
 	  battle_text_stage.addChild( enemy_text );
 	  battle_stage.addChild(current_enemy.health_meter);
 	  
+	  /* Compendium */
+	  
 	  switch ( current_enemy.id ) {
 			case GOBLIN:
 				current_enemy.state = createMovieClip( 250, 200, 5, 5, current_enemy.name, 1, 2 );
@@ -951,6 +953,7 @@ function generateBattleMenu()
 				break;
 			case PIXIE:
 				current_enemy.state = createMovieClip( 250, 200, 1, 1, current_enemy.name, 1, 5 );
+				current_enemy.state.animationSpeed = 0.25;
 				break;
 			case POSSESSED_SOLDIER:
 				current_enemy.state = createMovieClip( 240, 175, 2, 2, current_enemy.name, 1, 3 );
@@ -2627,7 +2630,7 @@ Player.prototype.updateHealthBar = function () {
 		}
 		
 		else {
-			this.health_meter = createSprite( this.state.position.x - 105, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
+			this.health_meter = createSprite( this.state.position.x - 90, this.state.position.y + 200, .5, .5, ( "ex_meter" + ( Math.round( this.health ) ) + ".png" ) );
 		}
 		battle_stage.addChild( this.health_meter );
 	}

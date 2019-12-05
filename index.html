@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Final Project</title>
+    <title>Shadow Hero Game</title>
+		<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: black;
+			color: aliceblue;
+			zoom: 100%;
+			}	</style>
   </head>
   <body>
     <h1>Shadow Hero</h1>
@@ -9,7 +16,8 @@
     <div id="gameport" tabindex="0"></div>
 
     <h1>Instructions</h1>
-    <p>Please Read Instructions before playing. Press Enter to Advance or initate dialogue.</p>
+    <p>Please Read Instructions before playing.</p>
+	<p>Press Enter to Advance or initate dialogue.</p>
     <p>In battle, use W to move the pointer up and S to move the pointer down. Press ENTER to make a selection.</p>
     <p>Some enemies are faster than you so they will finish their action before you do.<p>
     <p>All enemies have a small chance to miss their attacks against you.<p>
@@ -19,18 +27,29 @@
     <p>The player has been blessed by the goddess of plenty, use HEAL in combat will restore health up to the current armor level. (no limit)</p>
     <p>Looking for a challenge? Try and beat the game by defeating as few enemies as possible.</p>
     <p>WARNING: If you attempt to run from any bosses, then the Shadow King will win and the world will be consumed by darkness. This includes enemies that block progression.</p>
-    	<div id = "disqus_thread"></div>
-	
-	<script>
-	(function() {
-		var d = document, s = d.createElement('script');
-		s.src = 'https://nau-cs413.disqus.com/embed.js';
-		s.setAttribute('data-timestamp', +new Date());
-		(d.head || d.body).appendChild(s);
-	})();
-	</script>
 
-    <script src="pixi.js"></script>
+<script>
+/* Get the element you want displayed in fullscreen mode (a video in this example): */
+var elem = document.getElementById("gameport"); 
+
+/* When the openFullscreen() function is executed, open the video in fullscreen.
+Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+openFullscreen();
+</script>
+	
+	<script src="pixi.js"></script>
 	<script src="pixi-audio.js"></script>	
     <script src="tweenjs.min.js"></script>
     <script src="state-machine.min.js"></script>

@@ -431,6 +431,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">Overworld_Skeleton1.png</key>
+            <key type="filename">Overworld_Skeleton2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,19,25,37</rect>
+                <key>scale9Paddings</key>
+                <rect>13,19,25,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">Sexy Henchman1.png</key>
             <key type="filename">Sexy Henchman2.png</key>
             <key type="filename">Sexy Henchman3.png</key>
@@ -638,6 +654,24 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">battle_menu_cave.png</key>
+            <key type="filename">battle_menu_desert.png</key>
+            <key type="filename">battle_menu_forest.png</key>
+            <key type="filename">battle_menu_ice.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>125,125,250,250</rect>
+                <key>scale9Paddings</key>
+                <rect>125,125,250,250</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">ex_meter0.png</key>
             <key type="filename">ex_meter1.png</key>
             <key type="filename">ex_meter10.png</key>
@@ -812,6 +846,12 @@
             <filename>Overworld_Evil_Snowman3.png</filename>
             <filename>Overworld_Evil_Snowman1.png</filename>
             <filename>Overworld_Evil_Snowman2.png</filename>
+            <filename>Overworld_Skeleton1.png</filename>
+            <filename>Overworld_Skeleton2.png</filename>
+            <filename>battle_menu_cave.png</filename>
+            <filename>battle_menu_desert.png</filename>
+            <filename>battle_menu_forest.png</filename>
+            <filename>battle_menu_ice.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
