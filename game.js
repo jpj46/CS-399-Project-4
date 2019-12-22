@@ -1326,7 +1326,7 @@ function keydownEventHandler(event) {
             
             if ( mode == FIGHT ) { fight( checkTarget() ); }
 
-            else  if ( mode == skill ) { skill( checkTarget() ); }
+            else  if ( mode == SKILL ) { skill( checkTarget() ); }
 
             else  if ( mode == ITEM ) { useItem( checkTarget() ); }
          
