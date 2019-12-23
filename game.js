@@ -918,7 +918,7 @@ function generateBattleMenu()
       }
 
       menu_text = new PIXI.extras.BitmapText("fight\nskill\nheal\nrun", {font: "16px gamefont"});
-      menu_text.position.x = 105;
+      menu_text.position.x = 110;
       menu_text.position.y = 250;
 	  battle_text_stage.addChild( menu_text );
 	  
@@ -1012,10 +1012,7 @@ function generateBattleMenu()
 
       hand = new PIXI.Sprite(PIXI.Texture.fromImage("hand.png"));
       hand.position.x = menu_text.position.x - 20;
-      hand.position.y = menu_text.position.y + menu_text.height - 10;
-	  moveHand(hand.position.x, menu_text.position.y + 
-                           menu_text.height - 70);
-
+      hand.position.y = menu_text.position.y + menu_text.height - 70;
 	  
       battle_text_stage.addChild( hand );
 	   battle_stage.addChild( battle_text_stage );
