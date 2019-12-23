@@ -889,7 +889,7 @@ function generateBattleMenu()
       battle_active = true;
       battle_text_stage.scale.x = 1.5;
       battle_text_stage.scale.y = 1.5;
-      mode = RUN;
+      mode = FIGHT;
 	  
 	  statsScreen.visible = false; 
       statsScreen.removeChild( currentHealthSprite );
@@ -1013,6 +1013,8 @@ function generateBattleMenu()
       hand = new PIXI.Sprite(PIXI.Texture.fromImage("hand.png"));
       hand.position.x = menu_text.position.x - 20;
       hand.position.y = menu_text.position.y + menu_text.height - 10;
+	  moveHand(hand.position.x, menu_text.position.y + 
+                           menu_text.height - 70);
 
 	  
       battle_text_stage.addChild( hand );
@@ -1105,7 +1107,7 @@ function moveHand(x, y) {
 }
 
 var menu = StateMachine.create({
-  initial: {state: 'run', event: 'init'},
+  initial: {state: 'fight', event: 'init'},
   error: function() {},
   events: [
     {name: "down", from: "fight", to: "skill"}, //fight->magic
@@ -2296,8 +2298,8 @@ function endBattle ( foe ) {
 
 	moveHand(hand.position.x, menu_text.position.y + 
                            menu_text.height - 10);
-	while ( mode != RUN) {
-		menu.down();
+	while ( mode != FIGHT) {
+		menu.up();
 	}
 	count = 1;
 	clearBattleScreen();
@@ -2610,11 +2612,11 @@ Player.prototype.updateHealthBar = function () {
 	
 	for ( var i = this.armor; i > 0; i-- ) {
 		if ( i > 5 ) {
-			danger_level = createSprite( (i*25) - 150, this.state.position.y + 240, 1.5, 1.5, "armor.png");
+			danger_level = createSprite( (i*25) - 140, this.state.position.y + 245, 1, 1, "armor.png");
 		}	
 		
 		else {
-			danger_level = createSprite( (i*25) - 25, this.state.position.y + 210, 1.5, 1.5, "armor.png");
+			danger_level = createSprite( (i*25) - 15, this.state.position.y + 215, 1, 1, "armor.png");
 		}
 		
 		player_threat_stage.addChild( danger_level );
